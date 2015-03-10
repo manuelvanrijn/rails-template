@@ -1,4 +1,44 @@
-require File.expand_path('../helpers', __FILE__)
+template_url = 'https://raw.githubusercontent.com/manuelvanrijn/rails-template/master/templates'
+
+def download_file(url)
+  run "curl --progress-bar --location --remote-name #{url}"
+end
+
+def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
+
+def ask_wizard(question)
+  ask "\033[1m\033[36m" + ("option").rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
+end
+
+def yes_wizard?(question)
+  answer = ask_wizard(question + " \033[33m(y/n)\033[0m")
+  case answer.downcase
+    when "yes", "y"
+      true
+    when "no", "n"
+      false
+    else
+      yes_wizard?(question)
+  end
+end
+
+def no_wizard?(question); !yes_wizard?(question) end
+
+def remove_gem(gem_name)
+  gsub_file('Gemfile', /^gem\s+["']#{gem_name}["'].*$\n/, '')
+  # or idented (group gems)
+  gsub_file('Gemfile', /^  gem\s+["']#{gem_name}["'].*$\n/, '')
+end
+
+def remove_comments(file)
+  gsub_file(file, /^\s*#.*\n/, '') # remove comments
+end
+
+def add_gem_to_development_and_test(gem_name, version_str = nil)
+  version_str = ", '#{version_str}'" unless version_str.nil?
+  insert_into_file 'Gemfile', "\n  gem '#{gem_name}'#{version_str}",
+    after: 'group :development, :test do'
+end
 
 def source_paths
   Array(super) +
@@ -7,9 +47,9 @@ end
 
 include_errbit = yes_wizard?('Do you want to include "errbit"?')
 if include_errbit
-  @errbit_host    = ask('  errbit host? (ex: errbit.example.com)')
-  @errbit_port    = yes_wizard?(' errbit host uses ssl?') ? 443 : 80
-  @errbit_api_key = ask(' errbit API key for this project?')
+  errbit_host    = ask_wizard('errbit host? (ex: errbit.example.com)')
+  errbit_port    = yes_wizard?('errbit host uses ssl?') ? 443 : 80
+  errbit_api_key = ask_wizard('errbit API key for this project?')
 end
 include_bootstrap = yes_wizard?('Do you want to include "twitter bootstrap"?')
 include_bower_rails = yes_wizard?('Do you want to include "bower-rails"? (requires node and bower package "npm install -g bower")')
@@ -27,7 +67,7 @@ remove_gem 'byebug'
 remove_gem 'web-console'
 
 remove_file 'README.rdoc'
-copy_file 'README.md'
+download_file "#{template_url}/README.md"
 
 say_recipe 'Gems'
 
@@ -74,9 +114,9 @@ generate 'rspec:install'
 
 inside 'spec' do
   remove_file 'spec_helper.rb'
-  copy_file 'spec_helper.rb'
+  download_file "#{template_url}/spec/spec_helper.rb"
   remove_file 'rails_helper.rb'
-  copy_file 'rails_helper.rb'
+  download_file "#{template_url}/spec/rails_helper.rb"
 end
 
 #
@@ -104,7 +144,16 @@ if include_errbit
   say_recipe "errbit"
   inside 'config' do
     inside 'initializers' do
-      template 'errbit.rb'
+      create_file 'errbit.rb' do
+<<-ERRBIT
+Airbrake.configure do |config|
+  config.api_key = '#{errbit_api_key}'
+  config.host    = '#{errbit_host}'
+  config.port    = #{errbit_port}
+  config.secure  = config.port == 443
+end
+ERRBIT
+      end
     end
   end
 end
@@ -228,14 +277,14 @@ inside 'app' do
    *= require bootstrap_overrides
   STYLES
         end
-        copy_file 'bootstrap_overrides.scss'
+        download_file "#{template_url}/app/assets/stylesheets/bootstrap_overrides.scss"
       end
     end
   end
   inside 'views' do
     inside 'layouts' do
       remove_file 'application.html.erb'
-      copy_file 'application.html.haml'
+      download_file "#{template_url}/app/views/layouts/application.html.haml"
     end
   end
 end
@@ -311,14 +360,14 @@ DEVENV
 
   inside 'locales' do
     %w{nl.yml en.yml models.nl.yml models.en.yml}.each do |file|
-      copy_file file
+      download_file "#{template_url}/locales/#{file}"
     end
   end
 end
 
 say_recipe "git"
 remove_file '.gitignore'
-copy_file '.gitignore'
+download_file "#{template_url}/.gitignore"
 
 git :init
 git add: "."
