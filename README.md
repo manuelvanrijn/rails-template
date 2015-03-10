@@ -13,9 +13,7 @@ Simple template to bootstrap the stuff I always use in a new project
 ## Usage
 
 ```
-cd /code/some-path
-git clone git@github.com:manuelvanrijn/rails-template.git
-rails new <insert-app-name> -TB -d mysql -m /code/some-path/rails-template/template.rb
+rails new MyApp -TB -d mysql -m https://raw.githubusercontent.com/manuelvanrijn/rails-template/master/template.rb
 ```
 
 Running the above command will ask you a few questions:
