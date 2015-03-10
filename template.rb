@@ -165,14 +165,14 @@ if include_capistrano
   say_recipe "capistrano"
   run 'bundle exec cap install STAGES=staging,production'
   insert_into_file 'Capfile', before: /^\s*# Load custom tasks.*'/ do
-  <<-CAPFILE
-  require 'capistrano/rbenv'
-  require 'capistrano/bundler'
-  require 'capistrano/bundle_audit'
-  require 'capistrano/rails'
-  require 'airbrake/capistrano3'
-  require 'capistrano-db-tasks'
-  CAPFILE
+<<-CAPFILE
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
+require 'capistrano/bundle_audit'
+require 'capistrano/rails'
+require 'airbrake/capistrano3'
+require 'capistrano-db-tasks'
+CAPFILE
   end
   remove_comments 'Capfile'
 
@@ -180,74 +180,75 @@ if include_capistrano
     remove_comments 'deploy.rb'
 
     insert_into_file 'deploy.rb', before: 'namespace :deploy do' do
-  <<-DEPLOY
-  # Default value for :linked_files is []
-  set :linked_files, %w{config/database.yml config/secrets.yml}
+<<-DEPLOY
+# Default value for :linked_files is []
+set :linked_files, %w{config/database.yml config/secrets.yml}
 
-  # Default value for linked_dirs is []
-  set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads }
+# Default value for linked_dirs is []
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads }
 
-  # Default value for keep_releases is 5
-  set :keep_releases, 10
+# Default value for keep_releases is 5
+set :keep_releases, 10
 
-  # Capistrano DB settings
-  # ==============================================================================
-  # if you want to remove the local dump file after loading
-  set :db_local_clean, true
+# Capistrano DB settings
+# ==============================================================================
+# if you want to remove the local dump file after loading
+set :db_local_clean, true
 
-  # if you want to remove the dump file from the server after downloading
-  set :db_remote_clean, true
+# if you want to remove the dump file from the server after downloading
+set :db_remote_clean, true
 
-  # if you are highly paranoid and want to prevent any push operation to the server
-  set :disallow_pushing, true
+# if you are highly paranoid and want to prevent any push operation to the server
+set :disallow_pushing, true
 
-  DEPLOY
+DEPLOY
     end
 
     insert_into_file 'deploy.rb', after: 'namespace :deploy do' do
-  <<-DEPLOY
-    desc 'Restart application'
-    task :restart do
-      on roles(:app), in: :sequence, wait: 5 do
-        execute :touch, release_path.join('tmp/restart.txt')
-      end
+<<-DEPLOY
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
     end
+  end
 
-    after :publishing, :restart
+  after :publishing, :restart
 
-    after 'deploy:finished', 'airbrake:deploy'
-  DEPLOY
+  after 'deploy:finished', 'airbrake:deploy'
+DEPLOY
     end
 
     inside 'deploy' do
-      insert_into_file 'production.rb', after: 'role :db,  %w{deploy@example.com}' do
-  <<-DEPLOY
-  \n\nset :rails_env, 'production'
-  set :branch,    'master'
+      remove_file 'production.rb'
+      create_file 'production.rb' do
+<<-DEPLOY
+set :rails_env, 'production'
+set :branch,    'master'
 
-  set :deploy_to, '/home/deploy/rails'
+set :deploy_to, '/home/deploy/rails'
 
-  # RBENV
-  set :rbenv_type,        :system
-  set :rbenv_custom_path, '/opt/rbenv'
-  set :rbenv_ruby,        '2.2.0'
-  DEPLOY
+# RBENV
+set :rbenv_type,        :system
+set :rbenv_custom_path, '/opt/rbenv'
+set :rbenv_ruby,        '2.2.0'
+DEPLOY
       end
-      insert_into_file 'staging.rb', after: 'role :db,  %w{deploy@example.com}' do
-  <<-DEPLOY
-  \n\nset :rails_env, 'staging'
-  set :branch,    'develop'
+      remove_file 'staging.rb'
+      create_file 'staging.rb' do
+<<-DEPLOY
+set :rails_env, 'staging'
+set :branch,    'develop'
 
-  set :deploy_to, '/home/deploy/rails'
+set :deploy_to, '/home/deploy/rails'
 
-  # RBENV
-  set :rbenv_type,        :system
-  set :rbenv_custom_path, '/opt/rbenv'
-  set :rbenv_ruby,        '2.2.0'
-  DEPLOY
+# RBENV
+set :rbenv_type,        :system
+set :rbenv_custom_path, '/opt/rbenv'
+set :rbenv_ruby,        '2.2.0'
+DEPLOY
       end
-      remove_comments 'production.rb'
-      remove_comments 'staging.rb'
     end
   end
 end
@@ -266,16 +267,19 @@ inside 'app' do
     inside 'stylesheets' do
       if include_bootstrap
         gsub_file 'application.css', /\*= require_tree ./ do
-  <<-STYLES
-  *
-   * GEM COMPONENTS
-   * -------------------------------------
-   *= require font-awesome
-   *
-   * CUSTOM CSS
-   * -------------------------------------
-   *= require bootstrap_overrides
-  STYLES
+<<-STYLES
+*
+ * GEM COMPONENTS
+ * -------------------------------------
+ *= require font-awesome
+ *
+ * BOWER-RAILS COMPONENTS
+ * -------------------------------------
+ *
+ * CUSTOM CSS
+ * -------------------------------------
+ *= require bootstrap_overrides
+STYLES
         end
         download_file "#{template_url}/app/assets/stylesheets/bootstrap_overrides.scss"
       end
@@ -339,7 +343,12 @@ ASSETS
 
   inside 'environments' do
     gsub_file 'production.rb', /config.log_level = :debug/, "config.log_level = :info"
-
+    insert_into_file 'production.rb', after: "# config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)\n" do
+"
+  # Log to environment log file, keep 7, max size 100mb
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(Rails.root.join(\"log\", Rails.env + \".log\"), 7, 104857600))
+"
+    end
     run "cp production.rb staging.rb" if include_capistrano
 
     insert_into_file 'development.rb', after: '# config.action_view.raise_on_missing_translations = true' do
