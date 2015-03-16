@@ -39,8 +39,11 @@ Do you want to include "capistrano"? (y/n)
   * FactoryGirl
   * Database cleaner
   * shoulda-matchers
+  * timecop
 * Bower-Rails for frontend dependecy managment
 * Twitter Bootstrap with Font-Awesome
+* Model validators:
+  * E-Mail
 * And some handy development gems:
   * better_errors - the name says it all
   * quiet_assets - remove's log requests for js, css etc. so we can focus on the real requests
