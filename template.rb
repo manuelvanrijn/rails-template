@@ -90,6 +90,8 @@ end
 
 gem 'rails-i18n', '~> 4.0.0'
 gem 'haml-rails'
+gem 'email_validator'
+
 gem_group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -102,6 +104,7 @@ gem_group :development, :test do
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'simplecov-console'
+  gem 'timecop'
 end
 
 run 'bundle install'
