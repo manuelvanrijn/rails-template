@@ -372,7 +372,7 @@ DEVENV
 
   inside 'locales' do
     %w{nl.yml en.yml models.nl.yml models.en.yml}.each do |file|
-      download_file "#{template_url}/locales/#{file}"
+      download_file "#{template_url}/config/locales/#{file}"
     end
   end
 end
