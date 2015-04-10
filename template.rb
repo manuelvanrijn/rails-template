@@ -39,13 +39,13 @@ end
 # In that case, use `git clone` to download them to a local temporary dir.
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
-    source_paths.unshift(tempdir = Dir.mktmpdir('rails-template'))
+    source_paths.unshift(tempdir = Dir.mktmpdir("rails-template-"))
     at_exit { FileUtils.remove_entry(tempdir) }
-    git clone: [
-      '--quiet',
-      'https://github.com/manuelvanrijn/rails-template.git',
+    git :clone => [
+      "--quiet",
+      "https://github.com/manuelvanrijn/rails-template.git",
       tempdir
-    ].map(&:shellescape).join(' ')
+    ].map(&:shellescape).join(" ")
   else
     source_paths.unshift(File.dirname(__FILE__))
   end
