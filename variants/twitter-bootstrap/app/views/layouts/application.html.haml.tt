@@ -26,7 +26,6 @@
           %ul.nav.navbar-nav
 
           %ul.nav.navbar-nav.navbar-right
-            / %li= link_to t('.home'), root_path
 
     .container-fluid
       - flash.each do |type, msg|

@@ -10,7 +10,7 @@ def apply_template!
 
   template 'Gemfile.tt', force: true
 
-  template 'example.env.tt'
+  template 'example.env.tt', '.env'
   template 'ruby-version.tt', '.ruby-version'
   template 'erdconfig.tt', '.erdconfig'
   copy_file 'rubocop.yml', '.rubocop.yml'
@@ -26,9 +26,10 @@ def apply_template!
   remove_file 'public/favicon.ico'
 
   # run 'bundle install'
-  # apply 'variants/default/template.rb'
 
+  apply 'variants/default/template.rb'
   apply 'variants/twitter-bootstrap/template.rb'
+  apply 'variants/sorcery-cancancan/template.rb'
 
   # run a final bundle install before initial commit
   # run 'bundle install'

@@ -6,5 +6,7 @@ insert_into_file 'app/controllers/application_controller.rb', before: /^end/ do
     decorate_all
     super
   end
+
+  private
   RUBY
 end

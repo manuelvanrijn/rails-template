@@ -31,8 +31,6 @@ gem 'haml-rails'
 
 gem 'email_validator'
 
-gem 'sorcery'
-gem 'cancancan'
 gem 'draper'
 gem 'defer_draper'
 

@@ -10,9 +10,9 @@ template 'config/secrets.yml.tt', 'config/secrets.yml', force: true
 # remove all comments
 gsub_file('config/routes.rb', /^\s*#.*\n/, '')
 # add root example
-insert_into_file "config/routes.rb", before: /^end/ do
+insert_into_file 'config/routes.rb', before: /^end/ do
   <<-'RUBY'
-  # root 'home#index'
+  root 'home#index'
   RUBY
 end
 
