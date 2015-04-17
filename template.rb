@@ -10,7 +10,7 @@ def apply_template!
 
   template 'Gemfile.tt', force: true
 
-  template 'example.env.tt', '.env'
+  template 'example.env.tt', 'example.env'
   template 'ruby-version.tt', '.ruby-version'
   template 'erdconfig.tt', '.erdconfig'
   copy_file 'rubocop.yml', '.rubocop.yml'
@@ -27,9 +27,7 @@ def apply_template!
 
   # run 'bundle install'
 
-  apply 'variants/default/template.rb'
-  apply 'variants/twitter-bootstrap/template.rb'
-  apply 'variants/sorcery-cancancan/template.rb'
+  apply 'variants/template.rb'
 
   # run a final bundle install before initial commit
   # run 'bundle install'
@@ -52,7 +50,7 @@ def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     source_paths.unshift(tempdir = Dir.mktmpdir('rails-template'))
     at_exit { FileUtils.remove_entry(tempdir) }
-    git :clone => [
+    git clone: [
       '--quiet',
       'https://github.com/manuelvanrijn/rails-template.git',
       tempdir
@@ -107,69 +105,3 @@ def ask_with_default(question, color, default)
 end
 
 apply_template!
-
-return
-
-def say_recipe(name); say "\033[1m\033[36m" + 'recipe'.rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
-
-def ask_wizard(question)
-  ask "\033[1m\033[36m" + ('option').rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
-end
-
-def yes_wizard?(question)
-  answer = ask_wizard(question + " \033[33m(y/n)\033[0m")
-  case answer.downcase
-    when 'yes', 'y'
-      true
-    when 'no', 'n'
-      false
-    else
-      yes_wizard?(question)
-  end
-end
-
-def no_wizard?(question); !yes_wizard?(question) end
-
-def remove_comments(file)
-  gsub_file(file, /^\s*#.*\n/, '') # remove comments
-end
-
-#
-# ASSETS
-#
-say_recipe "assets"
-inside 'app' do
-  inside 'assets' do
-    inside 'javascripts' do
-      scripts = ""
-      scripts = "//= require bootstrap-sprockets\n" if include_bootstrap
-      gsub_file 'application.js', /\/\/= require turbolinks/, scripts
-    end
-    inside 'stylesheets' do
-      if include_bootstrap
-        gsub_file 'application.css', /\*= require_tree ./ do
-<<-STYLES
-*
- * GEM COMPONENTS
- * -------------------------------------
- *= require font-awesome
- *
- * BOWER-RAILS COMPONENTS
- * -------------------------------------
- *
- * CUSTOM CSS
- * -------------------------------------
- *= require bootstrap_overrides
-STYLES
-        end
-        download_file "#{template_url}/app/assets/stylesheets/bootstrap_overrides.scss"
-      end
-    end
-  end
-  inside 'views' do
-    inside 'layouts' do
-      remove_file 'application.html.erb'
-      download_file "#{template_url}/app/views/layouts/application.html.haml"
-    end
-  end
-end

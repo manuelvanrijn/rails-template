@@ -1,0 +1,17 @@
+nl:
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Geen %{entry_name} gevonden"
+          one: "Toon <strong>1</strong> %{entry_name}"
+          other: "Toon <strong>alle %{count}</strong> %{entry_name}"
+      more_pages:
+        display_entries: "Toon %{entry_name} <strong>%{first}&nbsp;-&nbsp;%{last}</strong> van <strong>%{total}</strong> in totaal"

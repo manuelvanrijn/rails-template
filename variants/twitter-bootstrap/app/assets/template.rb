@@ -1,8 +1,14 @@
+apply 'variants/twitter-bootstrap/app/assets/javascripts/application.js.rb'
+
 copy_file 'variants/twitter-bootstrap/app/assets/stylesheets/bootstrap_overrides.sass',
           'app/assets/stylesheets/bootstrap_overrides.sass'
 
-insert_into_file 'app/assets/javascripts/application.js', before: '//= require_tree .' do
+append_to_file 'app/assets/stylesheets/_components.sass' do
   <<-'RUBY'
-//= require bootstrap-sprockets
+
+// bootstrap-sass
+@import bootstrap-sprockets
+@import bootstrap
+@import rails_bootstrap_forms
   RUBY
 end

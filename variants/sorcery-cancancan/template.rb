@@ -1,7 +1,7 @@
 apply 'variants/sorcery-cancancan/Gemfile.rb'
 
 generate 'cancan:ability'
-generate 'sorcery:install remember_me'
+generate 'sorcery:install'
 
 apply 'variants/sorcery-cancancan/app/template.rb'
 apply 'variants/sorcery-cancancan/config/template.rb'

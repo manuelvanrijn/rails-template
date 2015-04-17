@@ -34,8 +34,7 @@ gem 'email_validator'
 gem 'draper'
 gem 'defer_draper'
 
-gem 'ransack'
-gem 'kaminari'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'spring'
