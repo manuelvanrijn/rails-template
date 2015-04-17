@@ -7,13 +7,17 @@ AllCops:
     - config/environment.rb
     - config/initializers/version.rb
     - db/schema.rb
+    - db/seeds.rb
     - Gemfile
     - Guardfile
     - Rakefile
+    - "spec/support/**/*"
 
 Metrics/LineLength:
   Exclude:
     - "config/**/*"
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
 
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -26,3 +30,15 @@ Style/RegexpLiteral:
 
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
+
+Style/StringLiterals:
+  Exclude:
+    - config/application.rb
+
+Style/BlockComments:
+  Exclude:
+    - spec/spec_helper.rb
+
+Style/TrailingWhitespace:
+  Exclude:
+    - config/initializers/bower_rails.rb

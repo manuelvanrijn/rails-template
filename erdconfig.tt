@@ -1,0 +1,7 @@
+inheritance: true
+filetype: pdf
+direct: true
+attributes: foreign_keys,content
+notation: uml
+prepend_primary: true
+title: <%= app_name %>

@@ -4,6 +4,6 @@ insert_into_file 'config/environments/production.rb', after: "# config.logger = 
   <<-'RUBY'
 
   # Log to environment log file, keep 7, max size 100mb
-  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(Rails.root.join('log', Rails.env + '.log'), 7, 104857600))
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(Rails.root.join('log', Rails.env + '.log'), 7, 104_857_600))
   RUBY
 end

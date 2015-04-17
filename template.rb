@@ -12,26 +12,36 @@ def apply_template!
 
   template 'example.env.tt'
   template 'ruby-version.tt', '.ruby-version'
+  template 'erdconfig.tt', '.erdconfig'
   copy_file 'rubocop.yml', '.rubocop.yml'
   copy_file '.capistrano/metrics', '.capistrano/metrics'
   copy_file 'gitignore', '.gitignore', force: true
 
-  apply 'config/template.rb'
   apply 'app/template.rb'
+  apply 'config/template.rb'
   apply 'bin/template.rb'
+  apply 'lib/template.rb'
   apply 'vendor/template.rb'
 
   remove_file 'public/favicon.ico'
 
   # run 'bundle install'
-  apply 'variants/default/template.rb'
+  # apply 'variants/default/template.rb'
+
+  apply 'variants/twitter-bootstrap/template.rb'
+
+  # run a final bundle install before initial commit
+  # run 'bundle install'
 
   # setup git
   git :init
-  git add: "."
+  git add: '.'
   git commit: "-aqm 'Initial commit'"
   git checkout: '-b develop'
 end
+
+require 'fileutils'
+require 'shellwords'
 
 # Add this template directory to source_paths so that Thor actions like
 # copy_file and template resolve against our source files. If this file was
@@ -39,13 +49,13 @@ end
 # In that case, use `git clone` to download them to a local temporary dir.
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
-    source_paths.unshift(tempdir = Dir.mktmpdir("rails-template-"))
+    source_paths.unshift(tempdir = Dir.mktmpdir('rails-template'))
     at_exit { FileUtils.remove_entry(tempdir) }
     git :clone => [
-      "--quiet",
-      "https://github.com/manuelvanrijn/rails-template.git",
+      '--quiet',
+      'https://github.com/manuelvanrijn/rails-template.git',
       tempdir
-    ].map(&:shellescape).join(" ")
+    ].map(&:shellescape).join(' ')
   else
     source_paths.unshift(File.dirname(__FILE__))
   end
@@ -64,21 +74,21 @@ end
 ################
 def git_repo_url
   @git_repo_url ||=
-    ask("What is the git remote URL for this project [skip]?", :blue)
+    ask('What is the git remote URL for this project [skip]?', :blue)
 end
 
 def production_hostname
   @production_hostname ||=
-    ask_with_default("Production hostname?", :blue, "example.com")
+    ask_with_default('Production hostname?', :blue, 'example.com')
 end
 
 def staging_hostname
   @staging_hostname ||=
-    ask_with_default("Staging hostname?", :blue, "staging.example.com")
+    ask_with_default('Staging hostname?', :blue, 'staging.example.com')
 end
 
 def gemfile_requirement(name)
-  @original_gemfile ||= IO.read("Gemfile")
+  @original_gemfile ||= IO.read('Gemfile')
   req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d\.\w'"]*).*$/, 1]
   req && req.gsub("'", %(")).strip.sub(/^,\s*"/, ', "').gsub('"', "'")
 end
@@ -90,7 +100,7 @@ def lower_case_app_name
 end
 
 def ask_with_default(question, color, default)
-  question = (question.split("?") << " [#{default}]?").join
+  question = (question.split('?') << " [#{default}]?").join
   answer = ask(question, color)
   answer.to_s.strip.empty? ? default : answer
 end
@@ -99,18 +109,18 @@ apply_template!
 
 return
 
-def say_recipe(name); say "\033[1m\033[36m" + "recipe".rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
+def say_recipe(name); say "\033[1m\033[36m" + 'recipe'.rjust(10) + "\033[0m" + "  Running #{name} recipe..." end
 
 def ask_wizard(question)
-  ask "\033[1m\033[36m" + ("option").rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
+  ask "\033[1m\033[36m" + ('option').rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
 end
 
 def yes_wizard?(question)
   answer = ask_wizard(question + " \033[33m(y/n)\033[0m")
   case answer.downcase
-    when "yes", "y"
+    when 'yes', 'y'
       true
-    when "no", "n"
+    when 'no', 'n'
       false
     else
       yes_wizard?(question)
