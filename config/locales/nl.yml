@@ -6,10 +6,6 @@ nl:
   true_value: Ja
   false_value: Nee
 
-  decorators:
-    user:
-      full_name: Volledige naam
-
   actions:
     back: Terug
     cancel: Annuleren
@@ -18,3 +14,7 @@ nl:
     delete_question: Weet u zeker dat u dit wilt verwijderen?
     edit: Bewerken
     show: Details
+
+  decorators:
+    user:
+      full_name: Volledige naam

@@ -25,12 +25,14 @@ def apply_template!
 
   remove_file 'public/favicon.ico'
 
-  # run 'bundle install'
+  run 'bundle install --quiet'
 
   apply 'variants/template.rb'
 
   # run a final bundle install before initial commit
-  # run 'bundle install'
+  run 'bundle install --quiet'
+  run 'bin/setup'
+  generate_spring_binstubs
 
   # setup git
   git :init
@@ -68,22 +70,6 @@ def assert_minimum_rails_version
   prompt = "This template requires Rails #{RAILS_REQUIREMENT}. "\
            "You are using #{rails_version}. Continue anyway?"
   exit 1 if no?(prompt)
-end
-
-################
-def git_repo_url
-  @git_repo_url ||=
-    ask('What is the git remote URL for this project [skip]?', :blue)
-end
-
-def production_hostname
-  @production_hostname ||=
-    ask_with_default('Production hostname?', :blue, 'example.com')
-end
-
-def staging_hostname
-  @staging_hostname ||=
-    ask_with_default('Staging hostname?', :blue, 'staging.example.com')
 end
 
 def gemfile_requirement(name)

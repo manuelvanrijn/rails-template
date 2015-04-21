@@ -23,7 +23,7 @@ module Draper
       if key[0] != '.'
         I18n.t(key, options)
       else
-        I18n.t("#{translation_key}.#{key}", options)
+        I18n.t("#{translation_key}#{key}", options)
       end
     end
 

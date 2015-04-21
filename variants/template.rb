@@ -1,10 +1,10 @@
 def apply_variants
   # always apply the default variant
-  # say_recipe 'default variant'
-  # apply 'variants/default/template.rb'
+  apply 'variants/default/template.rb'
 
+  # ask and apply other variants
   apply 'variants/twitter-bootstrap/template.rb'  if apply_twitter_bootstrap?
-  # apply 'variants/sorcery-cancancan/template.rb'  if apply_sorcery_cancancan?
+  apply 'variants/sorcery-cancancan/template.rb'  if apply_sorcery_cancancan?
   apply 'variants/ransack-kaminari/template.rb'   if apply_ransack_kaminari?
 end
 
@@ -38,6 +38,11 @@ end
 
 def ask_wizard(question)
   ask "\033[1m\033[36m" + ('option').rjust(10) + "\033[1m\033[36m" + "  #{question}\033[0m"
+end
+
+def ask_wizard_with_default(question, default)
+  answer = ask_wizard("#{question} \033[33m(default: #{default}):\033[0m")
+  answer.to_s.strip.empty? ? default : answer
 end
 
 def yes_wizard?(question)

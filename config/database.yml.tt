@@ -9,9 +9,7 @@ default: &default
 development:
   <<: *default
   database: <%= lower_case_app_name %>_development
+
 test:
   <<: *default
   database: <%= lower_case_app_name %>_test
-production:
-  <<: *default
-  database: <%= lower_case_app_name %>_production

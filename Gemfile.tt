@@ -9,12 +9,6 @@ gem 'jquery-rails'
 gem 'jbuilder'<%= gemfile_requirement('jbuilder') %>
 gem 'bcrypt'<%= gemfile_requirement('bcrypt') %>
 
-# gem 'secure_headers'
-
-# sidekiq
-# gem 'sidekiq'
-# gem 'sinatra', '>= 1.3.0', require: false
-
 gem 'marco-polo'
 gem 'dotenv-rails', '>= 2.0.0'
 gem 'bower-rails'
@@ -28,7 +22,6 @@ gem 'capistrano-db-tasks', require: false
 
 gem 'rails-i18n', '>= 4.0.0'
 gem 'haml-rails'
-
 gem 'email_validator'
 
 gem 'draper'
@@ -37,6 +30,7 @@ gem 'defer_draper'
 gem 'font-awesome-rails'
 
 group :development, :test do
+  gem 'puma' # lets use puma instead of webrick for development
   gem 'spring'
   gem 'byebug'
   gem 'pry-byebug'
@@ -54,12 +48,7 @@ group :development, :test do
   gem 'rails-erd'
   gem 'awesome_print'
 
-  # gem 'shoulda-callback-matchers'
-  # gem 'rack-livereload'
-  # gem 'annotate', ">= 2.5.0"
-
   gem 'capybara'
-
   # selenium-webdriver & chromedriver-helper used by
   # JavaScript-dependent feature specs (`js: true`):
   gem 'selenium-webdriver'

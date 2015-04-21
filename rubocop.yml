@@ -1,21 +1,23 @@
 AllCops:
   RunRailsCops: true
   Exclude:
-    - "bin/*"
+    - bin/*
     - Capfile
     - config/boot.rb
     - config/environment.rb
-    - config/initializers/version.rb
     - db/schema.rb
     - db/seeds.rb
     - Gemfile
     - Guardfile
     - Rakefile
-    - "spec/support/**/*"
+    - config/initializers/*
+    - db/migrate/*
+    - lib/templates/**/*
+    - spec/support/**/*
 
 Metrics/LineLength:
   Exclude:
-    - "config/**/*"
+    - config/**/*
     - spec/spec_helper.rb
     - spec/rails_helper.rb
 
@@ -42,3 +44,7 @@ Style/BlockComments:
 Style/TrailingWhitespace:
   Exclude:
     - config/initializers/bower_rails.rb
+
+# Don't force documentation for classes
+Style/Documentation:
+  Enabled: false

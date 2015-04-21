@@ -16,9 +16,9 @@ Capistrano runs on your local machine and uses SSH to perform the deployment on 
 * Your SSH key must be installed on the server in `~/.ssh/authorized_keys`.
 * You must have SSH access to Git repository (using your SSH key).
 
-### Performing a full deployment
+### Performing a deployment
 
-If there are data migrations or other changes that require downtime, perform the deployment using the following task:
+For the `staging` environment you will run the following:
 
 ```
 bundle exec cap staging deploy

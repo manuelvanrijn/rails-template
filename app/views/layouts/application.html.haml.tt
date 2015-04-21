@@ -11,9 +11,7 @@
     = csrf_meta_tags
   %body{class: "#{controller.controller_name}"}
     - flash.each do |type, msg|
-      %div{class: "alert alert-#{type == 'alert' ? 'danger' : 'success'} alert-dismissable", role: 'alert'}
-        %button.close{type: 'button', data: {dismiss: 'alert'}, aria: {label: 'Close'}}
-          %span{aria: {hidden: 'true'}} &times;
+      %div{class: "alert alert-#{type == 'alert' ? 'danger' : 'success'}}
         = msg if msg.is_a?(String)
 
     = yield

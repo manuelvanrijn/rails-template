@@ -1,4 +1,4 @@
-uncomment_lines 'config/environments/production.rb', /for nginx/i
+uncomment_lines 'config/environments/production.rb', /for NGINX/i
 
 insert_into_file 'config/environments/production.rb', after: "# config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)\n" do
   <<-'RUBY'
