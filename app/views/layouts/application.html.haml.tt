@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title <%= app_name %>
+    /
+      <%= app_name %>
+      version: #{Rails.application.config.version} (#{l(Rails.application.config.version_time)})
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body{class: "#{controller.controller_name}"}
+    - flash.each do |type, msg|
+      %div{class: "alert alert-#{type == 'alert' ? 'danger' : 'success'}}
+        = msg if msg.is_a?(String)
+
+    = yield

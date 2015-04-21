@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %title <%= app_name %>
+    /
+      <%= app_name %>
+      version: #{Rails.application.config.version} (#{l(Rails.application.config.version_time)})
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    /[if lt IE 9]
+      %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"}
+    = csrf_meta_tags
+  %body{class: "#{controller.controller_name}"}
+    %nav.navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle.collapsed{'aria-controls' => 'navbar', 'aria-expanded' => 'false', 'data-target' => '#navbar', 'data-toggle' => 'collapse', type: 'button'}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+
+          = link_to '<%= app_name %>', root_path, class: 'navbar-brand'
+
+        #navbar.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+
+          %ul.nav.navbar-nav.navbar-right
+
+    .container-fluid
+      - flash.each do |type, msg|
+        %div{class: "alert alert-#{type == 'alert' ? 'danger' : 'success'} alert-dismissable", role: 'alert'}
+          %button.close{type: 'button', data: {dismiss: 'alert'}, aria: {label: 'Close'}}
+            %span{aria: {hidden: 'true'}} &times;
+          = msg if msg.is_a?(String)
+
+      = yield

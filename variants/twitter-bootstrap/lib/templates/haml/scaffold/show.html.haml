@@ -1,0 +1,11 @@
+%h1= <%= class_name %>.model_name.human.singularize
+
+%dl.dl-horizontal
+<% for attribute in attributes -%>
+  %dt= <%= class_name %>.human_attribute_name :<%= attribute.name %>
+  %dd= @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+= link_to t('actions.edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
+\|
+= link_to t('actions.cancel'), <%= index_helper %>_path

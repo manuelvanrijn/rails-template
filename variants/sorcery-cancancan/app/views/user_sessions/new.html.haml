@@ -1,0 +1,14 @@
+.row-fluid
+  .col-lg-4.col-lg-offset-4.col-sm-8.col-sm-offset-2
+    .panel.panel-default.login_panel
+      .panel-heading
+        %h3.panel-title= t('user_sessions.title')
+      .panel-body
+        = form_for :user_session, url: login_path do |f|
+          .form-group
+            = f.text_field :email, class: 'form-control form-email', :placeholder => t('user_sessions.email')
+
+          .form-group
+            = f.password_field :password, class: 'form-control form-password', :placeholder => t('user_sessions.password')
+
+          = f.submit t('user_sessions.login'), class: 'btn btn-primary'

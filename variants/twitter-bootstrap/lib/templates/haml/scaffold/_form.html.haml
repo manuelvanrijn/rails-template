@@ -1,0 +1,16 @@
+= bootstrap_form_for(@<%= singular_table_name %>, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-10') do |f|
+
+<%- attributes.each do |attribute| -%>
+<%- if attribute.reference? -%>
+  = f.collection_select :<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, prompt: true %>
+<%- elsif attribute.field_type == :check_box -%>
+  = f.form_group do
+    = f.<%= attribute.field_type %> :<%= attribute.column_name %>
+<%- else -%>
+  = f.<%= attribute.field_type %> :<%= attribute.column_name %>
+<%- end -%>
+<%- end -%>
+
+  = f.form_group do
+    = f.primary
+    = link_to t('actions.cancel'), <%= index_helper %>_path

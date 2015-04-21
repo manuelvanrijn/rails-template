@@ -1,0 +1,56 @@
+source 'https://rubygems.org'
+
+gem 'rails', '<%= Rails.version %>'
+gem 'mysql2'
+gem 'sass-rails'<%= gemfile_requirement('sass-rails') %>
+gem 'uglifier'<%= gemfile_requirement('uglifier') %>
+gem 'coffee-rails'<%= gemfile_requirement('coffee-rails') %>
+gem 'jquery-rails'
+gem 'jbuilder'<%= gemfile_requirement('jbuilder') %>
+gem 'bcrypt'<%= gemfile_requirement('bcrypt') %>
+
+gem 'marco-polo'
+gem 'dotenv-rails', '>= 2.0.0'
+gem 'bower-rails'
+gem 'airbrake'
+gem 'capistrano'
+gem 'capistrano-rbenv'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-bundle_audit', require: false
+gem 'capistrano-db-tasks', require: false
+
+gem 'rails-i18n', '>= 4.0.0'
+gem 'haml-rails'
+gem 'email_validator'
+
+gem 'draper'
+gem 'defer_draper'
+
+gem 'font-awesome-rails'
+
+group :development, :test do
+  gem 'puma' # lets use puma instead of webrick for development
+  gem 'spring'
+  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'letter_opener'
+  gem 'bullet'
+  gem 'database_cleaner'
+  gem 'rspec-rails', '> 3.0'
+  gem 'factory_girl_rails', '~> 4.5'
+  gem 'shoulda-matchers', require: false
+  gem 'simplecov'
+  gem 'simplecov-console'
+  gem 'rails-erd'
+  gem 'awesome_print'
+
+  gem 'capybara'
+  # selenium-webdriver & chromedriver-helper used by
+  # JavaScript-dependent feature specs (`js: true`):
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+end

@@ -1,0 +1,14 @@
+nl:
+  dictionary:
+    name: &name Naam
+
+  activerecord:
+    models:
+      user: Gebruiker
+
+    attributes:
+      user:
+        name: &name
+        email: E-mailadres
+        password: Wachtwoord
+        password_confirmation: Wachtwoord herhalen

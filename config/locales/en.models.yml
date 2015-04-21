@@ -1,0 +1,14 @@
+nl:
+  dictionary:
+    name: &name Name
+
+  activerecord:
+    models:
+      user: User
+
+    attributes:
+      user:
+        name: &name
+        email: Email address
+        password: Password
+        password_confirmation: Repeat password

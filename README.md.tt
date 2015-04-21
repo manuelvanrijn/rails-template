@@ -1,0 +1,32 @@
+# <%= app_name %>
+
+This is a Rails <%= Rails.version %> app.
+
+## Documentation
+
+* Staging and production deployment instructions are in `DEPLOYMENT.md`
+
+## Prerequisites
+
+This project requires:
+
+* Ruby <%= RUBY_VERSION %>, preferably managed using [rbenv][]
+* MySQL must be installed and accepting connections
+
+## Getting started
+
+### bin/setup
+
+Run the `bin/setup` script. This script will:
+
+* Check you have the required Ruby version
+* Install gems using Bundler
+* Create local copies of `.env`
+* Create, migrate, and seed the database
+
+### Run it!
+
+1. Run `rspec spec` to make sure everything works.
+2. Run `rails s` to start the Rails app.
+
+[rbenv]:https://github.com/sstephenson/rbenv

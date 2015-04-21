@@ -1,8 +1,0 @@
-nl:
-  # activerecord:
-  #   models:
-  #     user: Gebruiker
-
-  #   attributes:
-  #     user:
-  #       first_name: Voornaam
