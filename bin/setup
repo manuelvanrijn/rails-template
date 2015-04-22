@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'securerandom'
 
 def setup!
   within_project_root do
@@ -64,6 +65,13 @@ def copy(example_path)
 
   log(:magenta, "copy #{example_path} → #{copy_path}") do
     FileUtils.cp(example_path, copy_path)
+  end
+  generate_secret_key_base
+end
+
+def generate_secret_key_base
+  log(:magenta, "generating secret key base") do
+    File.write('.env', File.open('.env', &:read).gsub('SECRET_KEY_BASE=',"SECRET_KEY_BASE=#{SecureRandom.hex(64)}"))
   end
 end
 
