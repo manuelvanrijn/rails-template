@@ -51,4 +51,7 @@ rubocop
 # check for vulnerable versions in your Gemfile
 bundle exec bundle-audit update
 bundle exec bundle-audit
+
+# check for rails security issues using brakeman
+bundle exec brakeman
 ```

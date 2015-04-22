@@ -49,6 +49,7 @@ group :development, :test do
   gem 'simplecov-console'
   gem 'rails-erd'
   gem 'awesome_print'
+  gem 'brakeman', require: false
 
   gem 'capybara'
   # selenium-webdriver & chromedriver-helper used by

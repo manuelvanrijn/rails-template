@@ -14,7 +14,7 @@ def apply_template!
   template 'ruby-version.tt', '.ruby-version'
   template 'erdconfig.tt', '.erdconfig'
   copy_file 'rubocop.yml', '.rubocop.yml'
-  copy_file '.capistrano/metrics', '.capistrano/metrics'
+  copy_file '.capistrano/metrics'
   copy_file 'gitignore', '.gitignore', force: true
 
   apply 'app/template.rb'
@@ -22,8 +22,6 @@ def apply_template!
   apply 'bin/template.rb'
   apply 'lib/template.rb'
   apply 'vendor/template.rb'
-
-  remove_file 'public/favicon.ico'
 
   run 'bundle install --quiet'
 
