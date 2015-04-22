@@ -30,3 +30,25 @@ Run the `bin/setup` script. This script will:
 2. Run `rails s` to start the Rails app.
 
 [rbenv]:https://github.com/sstephenson/rbenv
+
+## Rake tasks
+
+```
+# generate an erd.pdf from your models
+bin/rake erd
+```
+
+## Tests
+
+Running `rspec spec` will run all the tests and outputs a coverage report to `coverage/index.html`
+
+## Metrics/code style/other handy commands
+
+```
+# check your code using rubocop with the rules specified in .rubocop.yml
+rubocop
+
+# check for vulnerable versions in your Gemfile
+bundle exec bundle-audit update
+bundle exec bundle-audit
+```

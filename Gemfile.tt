@@ -19,6 +19,8 @@ gem 'capistrano-bundler'
 gem 'capistrano-rails'
 gem 'capistrano-bundle_audit', require: false
 gem 'capistrano-db-tasks', require: false
+gem 'capistrano-rails-console'
+gem 'airbrussh', require: false
 
 gem 'rails-i18n', '>= 4.0.0'
 gem 'haml-rails'

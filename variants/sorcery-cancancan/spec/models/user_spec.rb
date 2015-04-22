@@ -9,6 +9,6 @@ RSpec.describe User, type: :model do
   subject { FactoryGirl.create :user }
 
   describe '#admin?' do
-    pending "add implementation"
+    pending 'add implementation'
   end
 end

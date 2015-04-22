@@ -12,9 +12,10 @@
 /log/*.log.*
 /tmp
 
-# Ignore test reports
+# Ignore (test) reports
 /brakeman-output.*
 /coverage
+/erd.pdf
 
 # Ignore results of `rake assets:precompile` or `rake bower:install`.
 /public/assets/
@@ -22,7 +23,6 @@
 /npm-debug.log
 
 # Never check passwords into source control!
-# /config/database.yml
 /.env
 
 # attachments

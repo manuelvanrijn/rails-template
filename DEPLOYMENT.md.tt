@@ -23,3 +23,16 @@ For the `staging` environment you will run the following:
 ```
 bundle exec cap staging deploy
 ```
+
+### Other capistrano helpers
+
+```
+# Start a rails console without ssh-ing to the remote server
+bundle exec cap staging rails:console
+
+# Pull the remote database to your local machine
+bundle exec cap staging db:pull
+
+# Pull the remote assets to your local machine
+bundle exec cap staging assets:pull
+```

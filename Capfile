@@ -9,6 +9,7 @@ require 'capistrano/rails'
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
 require 'capistrano/bundle_audit'
+require 'capistrano/rails/console'
 
 require 'airbrake/capistrano3'
 require 'capistrano-db-tasks'
