@@ -1,5 +1,5 @@
 set :rails_env, 'production'
-set :branch, :master
+set :branch,    :master
 
 # RBENV
 set :rbenv_type,        :system

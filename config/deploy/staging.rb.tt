@@ -1,5 +1,5 @@
 set :rails_env, 'staging'
-set :branch, :develop
+set :branch,    :develop
 
 # RBENV
 set :rbenv_type,        :system

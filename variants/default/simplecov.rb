@@ -4,6 +4,7 @@ insert_into_file 'spec/rails_helper.rb', after: "ENV['RAILS_ENV'] ||= 'test'\n" 
 require 'simplecov'
 SimpleCov.start 'rails' do
   add_group 'Decorators', 'app/decorators'
+  add_group 'Rake tasks', 'lib/tasks'
 end
 
   RUBY

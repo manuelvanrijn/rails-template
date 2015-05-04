@@ -48,7 +48,7 @@ Running `rspec spec` will run all the tests and outputs a coverage report to `co
 # check your code using rubocop with the rules specified in .rubocop.yml
 rubocop
 
-# check for vulnerable versions in your Gemfile
+# check for vulnerable versions in your Gemfile (this will also be done on deploy with capistrano)
 bundle exec bundle-audit update
 bundle exec bundle-audit
 
