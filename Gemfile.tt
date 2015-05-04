@@ -33,6 +33,7 @@ gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'puma' # lets use puma instead of webrick for development
+  gem 'foreman'
   gem 'spring'
   gem 'byebug'
   gem 'pry-byebug'

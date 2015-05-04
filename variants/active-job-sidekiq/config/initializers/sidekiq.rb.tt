@@ -1,0 +1,17 @@
+# set namespace to rails environment (ex. 'sidekiq_<%= lower_case_app_name %>_staging'
+sidekiq_namespace = "sidekiq_<%= lower_case_app_name %>_#{Rails.env}"
+
+Sidekiq.configure_server do |config|
+  config.redis = { namespace: sidekiq_namespace }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { namespace: sidekiq_namespace }
+end
+
+require 'sidekiq/web'
+Sidekiq::Web.app_url = '/'
+Sidekiq::Web.use(Rack::Auth::Basic, 'Application') do |username, password|
+  username == ENV.fetch('SIDEKIQ_WEB_USERNAME') &&
+    password == ENV.fetch('SIDEKIQ_WEB_PASSWORD')
+end

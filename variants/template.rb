@@ -6,6 +6,7 @@ def apply_variants
   apply 'variants/twitter-bootstrap/template.rb'  if apply_twitter_bootstrap?
   apply 'variants/sorcery-cancancan/template.rb'  if apply_sorcery_cancancan?
   apply 'variants/ransack-kaminari/template.rb'   if apply_ransack_kaminari?
+  apply 'variants/active-job-sidekiq/template.rb' if apply_active_job_sidekiq?
 end
 
 def apply_twitter_bootstrap?
@@ -29,6 +30,12 @@ def apply_ransack_kaminari?
   @variant_ransack_kaminari
 end
 
+def apply_active_job_sidekiq?
+  if @variant_active_job_sidekiq.nil?
+    @variant_active_job_sidekiq = yes_wizard? 'Do you want to include ActiveJob for processing heavy or time intensive tasks, using Sidekiq?'
+  end
+  @variant_active_job_sidekiq
+end
 #
 # Helper methods
 #

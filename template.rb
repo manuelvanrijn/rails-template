@@ -16,6 +16,7 @@ def apply_template!
   copy_file 'rubocop.yml', '.rubocop.yml'
   copy_file '.capistrano/metrics'
   copy_file 'gitignore', '.gitignore', force: true
+  copy_file 'Procfile'
 
   apply 'app/template.rb'
   apply 'config/template.rb'
