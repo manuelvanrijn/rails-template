@@ -7,3 +7,5 @@ gem 'cancancan', '~> 1.10'
 
   RUBY
 end
+
+run 'bundle install --quiet'

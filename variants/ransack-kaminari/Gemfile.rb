@@ -11,3 +11,5 @@ end
 if apply_twitter_bootstrap?
   insert_into_file 'Gemfile', "gem 'bootstrap-kaminari-views'\n\n", after: /gem 'kaminari'\n/
 end
+
+run 'bundle install --quiet'

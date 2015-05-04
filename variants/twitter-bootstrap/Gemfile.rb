@@ -8,3 +8,5 @@ gem 'bootstrap_form'
 
   RUBY
 end
+
+run 'bundle install --quiet'
