@@ -96,3 +96,10 @@ During the generation the template will ask you if you want to include some vari
 * If choosen for variant Twitter Bootstrap, the application helper is modified to use a [Twitter Bootstrap styled pagination component](https://github.com/matenia/bootstrap-kaminari-views)
 * Modifies scaffold templates to include a search field and ordering on the columns of a `index` view
 * Adds localization file with the translations used by [kaminari](https://github.com/amatsuda/kaminari)
+
+### ActiveJob for background jobs, using Sidekiq
+
+* Adds [sidekiq](http://sidekiq.org/) as queue adapter for ActiveJob
+* Adds `redis-server` and `sidekiq` to start with `foreman`
+* Adds two `ENV` variables for the basic authentication on `/sidekiq` for monitoring
+* Extends `simplecov` to group `Jobs`
