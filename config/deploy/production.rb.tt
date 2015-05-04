@@ -12,6 +12,6 @@ set :rbenv_ruby,        '<%= RUBY_VERSION %>'
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-set :deploy_to, '/home/deployer-production/<%= app_name %>'
+set :deploy_to, '/home/deployer_production/<%= app_name %>'
 
-server 'example.com', user: 'deployer-production', roles: %w(app web db)
+server 'example.com', user: 'deployer_production', roles: %w(app web db)

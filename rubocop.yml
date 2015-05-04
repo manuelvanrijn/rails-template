@@ -27,9 +27,6 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-Style/RegexpLiteral:
-  MaxSlashes: 0
-
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
 
