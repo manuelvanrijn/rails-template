@@ -35,6 +35,7 @@ Create a `~/.railsrc` file with these contents:
 * Setup git master and develop branch structure
 * HAML instead of ERB
 * Puma instead of Webrick for development
+* Foreman to bootup rails (and other dependent processes) for development
 * Airbrake (errbit) for error handling and capistrano deployment hooks
 * Capistrano for deployment with two environments (production, staging)
 * Production configuration for nginx
