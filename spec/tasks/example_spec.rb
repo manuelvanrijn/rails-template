@@ -5,7 +5,7 @@ RSpec.describe 'Example tasks', type: :task do
 
     before do
       # Freeze time as task is time-sensitive
-      travel_to Time.now
+      travel_to Time.zone.now
     end
 
     after { travel_back }

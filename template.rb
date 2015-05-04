@@ -28,8 +28,9 @@ def apply_template!
 
   apply 'variants/template.rb'
 
-  # run a final bundle install before initial commit
-  run 'bundle install --quiet'
+  # run a final bundle update to have the latest and greatest version of all
+  # before we initial commit
+  run 'bundle update --quiet'
   run 'bin/setup'
   generate_spring_binstubs
 
