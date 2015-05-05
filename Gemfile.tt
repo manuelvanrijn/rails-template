@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '<%= Rails.version %>'
 gem 'mysql2'
-gem 'sass-rails'<%= gemfile_requirement('sass-rails') %>
+gem 'sass-rails', '~> 5.0.3'
 gem 'uglifier'<%= gemfile_requirement('uglifier') %>
 gem 'coffee-rails'<%= gemfile_requirement('coffee-rails') %>
 gem 'jquery-rails'
