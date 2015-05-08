@@ -13,7 +13,7 @@ MySQL
 
 ```
 rails new blog \
-  -TB
+  -TB \
   -d mysql \
   -m https://raw.githubusercontent.com/manuelvanrijn/rails-template/master/template.rb
 ```
