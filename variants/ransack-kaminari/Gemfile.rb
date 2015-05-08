@@ -4,6 +4,7 @@ insert_into_file 'Gemfile', before: 'group :development, :test do' do
 # variant: ransack-kaminari
 gem 'ransack'
 gem 'kaminari'
+
   RUBY
 end
 
