@@ -14,8 +14,5 @@ insert_into_file 'config/application.rb', after: "config.i18n.default_locale = :
 
     # supported locales
     config.i18n.available_locales = [:nl, :en]
-
-    # use the rails log formatter for when calling Rails.logger
-    config.log_formatter = ::Logger::Formatter.new
   RUBY
 end
