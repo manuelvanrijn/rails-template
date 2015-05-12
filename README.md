@@ -12,9 +12,9 @@ MySQL
 ## Usage
 
 ```
-rails new blog \
-  -TB \
-  -d mysql \
+rails new <project_name>\
+  -TB\
+  -d mysql\
   -m https://raw.githubusercontent.com/manuelvanrijn/rails-template/master/template.rb
 ```
 
