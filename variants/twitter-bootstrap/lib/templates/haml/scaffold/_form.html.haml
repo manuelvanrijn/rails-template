@@ -2,7 +2,7 @@
 
 <%- attributes.each do |attribute| -%>
 <%- if attribute.reference? -%>
-  = f.collection_select :<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, prompt: true %>
+  = f.collection_select :<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, prompt: true
 <%- elsif attribute.field_type == :check_box -%>
   = f.form_group do
     = f.<%= attribute.field_type %> :<%= attribute.column_name %>
