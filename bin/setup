@@ -16,7 +16,7 @@ def setup!
     run  'bin/rake db:create:all'
     run  'bin/rake db:migrate'
     run  'bin/rake db:seed'
-    run  'bin/rake bower:install'
+    run  'bin/rake bower:install:development'
   end
 end
 
