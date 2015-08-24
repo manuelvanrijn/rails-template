@@ -11,7 +11,7 @@ Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'im
 # already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-# Sort hand for adding images and font's into the asset pipeline
+# Short hand for adding images and font's into the asset pipeline
 Rails.application.config.assets.precompile.push(proc do |path|
   File.extname(path).in? [
     '.png',  '.gif', '.jpg', '.jpeg', '.svg', # Images
