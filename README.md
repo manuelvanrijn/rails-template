@@ -98,9 +98,10 @@ During the generation the template will ask you if you want to include some vari
 * Modifies scaffold templates to include a search field and ordering on the columns of a `index` view
 * Adds localization file with the translations used by [kaminari](https://github.com/amatsuda/kaminari)
 
-### ActiveJob for background jobs, using Sidekiq
+### Sidekiq for background jobs
 
-* Adds [sidekiq](http://sidekiq.org/) as queue adapter for ActiveJob
+* Adds [sidekiq](http://sidekiq.org/)
+* Adds [sidekiq-statistic](https://github.com/davydovanton/sidekiq-statistic)
 * Adds `redis-server` and `sidekiq` to start with `foreman`
 * Adds two `ENV` variables for the basic authentication on `/sidekiq` for monitoring
-* Extends `simplecov` to group `Jobs`
+* Extends `simplecov` to group `Workers`
