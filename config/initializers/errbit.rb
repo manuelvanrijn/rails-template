@@ -1,6 +1,4 @@
 Airbrake.configure do |config|
-  config.api_key = "#{ENV['ERRBIT_API_KEY']}"
-  config.host    = "#{ENV['ERRBIT_HOSTNAME']}"
-  config.port    = 443
-  config.secure  = config.port == 443
+  config.project_key = ENV['ERRBIT_PROJECT_KEY'].to_s
+  config.host        = ENV['ERRBIT_HOST'].to_s
 end

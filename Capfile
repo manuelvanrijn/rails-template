@@ -11,7 +11,7 @@ require 'capistrano/bundler'
 require 'capistrano/bundle_audit'
 require 'capistrano/rails/console'
 
-require 'airbrake/capistrano3'
+require 'airbrake/capistrano/tasks'
 require 'capistrano-db-tasks'
 require 'airbrussh/capistrano'
 

@@ -44,7 +44,7 @@ namespace :deploy do
 
   after :publishing, :restart
 
-  after 'deploy:finished', 'airbrake:deploy'
+  after :finished, 'airbrake:deploy'
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
