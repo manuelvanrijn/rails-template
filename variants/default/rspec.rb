@@ -10,6 +10,7 @@ copy_file 'spec/support/capybara.rb'
 copy_file 'spec/support/database_cleaner.rb'
 copy_file 'spec/support/factory_girl.rb'
 copy_file 'spec/support/shoulda-matchers.rb'
+copy_file 'spec/support/spec_file_name_enforcer.rb'
 copy_file 'spec/support/tasks.rb'
 copy_file 'spec/support/time_helpers.rb'
 
