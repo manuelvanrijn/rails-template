@@ -1,4 +1,4 @@
-RAILS_REQUIREMENT = '~> 4.2.4'
+RAILS_REQUIREMENT = '~> 4.2.5.1'
 
 def apply_template!
   assert_minimum_rails_version
