@@ -1,7 +1,7 @@
 insert_into_file 'app/controllers/application_controller.rb', before: /  private/ do
   <<-'RUBY'
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to login_path, alert: exception.message
+    redirect_to :back, alert: exception.message
   end
 
   RUBY

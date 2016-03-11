@@ -19,7 +19,7 @@ module Draper
   #     end
   #
   class Decorator
-    def t(key, options={})
+    def t(key, options = {})
       if key[0] != '.'
         I18n.t(key, options)
       else

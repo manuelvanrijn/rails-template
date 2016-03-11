@@ -5,6 +5,10 @@ require 'simplecov'
 SimpleCov.start 'rails' do
   add_group 'Decorators', 'app/decorators'
   add_group 'Rake tasks', 'lib/tasks'
+  add_group 'Serializers', 'app/serializers'
+
+  # ignored
+  add_filter '/lib/templates/rails'
 end
 
   RUBY
