@@ -5,6 +5,7 @@ insert_into_file 'Gemfile', before: 'group :development, :test do' do
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 gem 'bootstrap_form'
+gem 'active_link_to'
 
   RUBY
 end

@@ -17,6 +17,7 @@ gem 'airbrake', '~> 4.1.0'
 gem 'rails-i18n', '>= 4.0.0'
 gem 'haml-rails'
 gem 'email_validator'
+gem 'recipient_interceptor'
 
 gem 'draper'
 gem 'defer_draper'
