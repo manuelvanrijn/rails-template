@@ -7,3 +7,11 @@ insert_into_file 'config/environments/production.rb', after: "# config.logger = 
   config.logger = ActiveSupport::TaggedLogging.new(Logger.new(Rails.root.join('log', Rails.env + '.log'), 7, 104_857_600))
   RUBY
 end
+
+insert_into_file 'config/environments/production.rb', after: "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n" do
+  <<-'RUBY'
+
+  # Enable deflate / gzip compression of controller-generated responses
+  config.middleware.use Rack::Deflater
+  RUBY
+end
