@@ -20,6 +20,9 @@ set :linked_dirs, %w(
   public/uploads
 )
 
+# Generate binstubs
+set :bundle_binstubs, nil
+
 # Default value for keep_releases is 5
 set :keep_releases, 10
 
