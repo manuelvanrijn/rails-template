@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '<%= Rails.version %>'
 gem 'mysql2'
-gem 'sass-rails', '~> 5.0.3'
-gem 'uglifier'<%= gemfile_requirement('uglifier') %>
+gem 'sassc-rails', '~> 1.2.1'
+gem 'mini_racer', '~> 0.1.4'
 gem 'coffee-rails'<%= gemfile_requirement('coffee-rails') %>
 gem 'jquery-rails'
 gem 'jbuilder'<%= gemfile_requirement('jbuilder') %>
