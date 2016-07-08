@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '<%= Rails.version %>'
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'mysql2'
 gem 'sassc-rails', '~> 1.2.1'
 gem 'mini_racer', '~> 0.1.4'
@@ -10,45 +11,47 @@ gem 'jbuilder'<%= gemfile_requirement('jbuilder') %>
 gem 'bcrypt'<%= gemfile_requirement('bcrypt') %>
 
 gem 'marco-polo'
-gem 'dotenv-rails', '>= 2.0.0'
-gem 'bower-rails'
-gem 'airbrake', '~> 4.1.0'
+gem 'dotenv-rails', '>= 2.0'
+gem 'bower-rails', '~> 0.10'
+gem 'airbrake', '~> 4.1'
 
-gem 'rails-i18n', '>= 4.0.0'
-gem 'haml-rails'
+gem 'rails-i18n', '>= 4.0'
+gem 'haml-rails', '~> 0.9'
+gem 'responders', '~> 2.2.0'
 gem 'email_validator'
 gem 'recipient_interceptor'
 
-gem 'draper'
-gem 'defer_draper'
-
 gem 'font-awesome-rails'
 
+gem 'redis', '~> 3.0'
+gem 'readthis', '~> 1.3'
+gem 'hiredis', '~> 0.6'
+
 group :development, :test do
-  gem 'capistrano'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails', '~> 1.1.3'
+  gem 'capistrano', '3.5.0'
+  gem 'capistrano-rbenv', '~> 2.0.4'
+  gem 'capistrano-bundler', '~> 1.1.4'
+  gem 'capistrano-rails', '~> 1.1.7'
   gem 'capistrano-bundle_audit', require: false
   gem 'capistrano-db-tasks', require: false
-  gem 'capistrano-rails-console'
-  gem 'airbrussh', require: false
+  gem 'capistrano-rails-console', '~> 1.0.2'
+  gem 'airbrussh', '~> 1.0.2', require: false
 
-  gem 'puma' # lets use puma instead of webrick for development
-  gem 'foreman'
+  gem 'puma', '~> 3.0'
+  gem 'foreman', '~> 0.82'
   gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0'
   gem 'byebug'
   gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'quiet_assets'
   gem 'letter_opener'
   gem 'bullet'
   gem 'database_cleaner'
   gem 'coderay'
-  gem 'rspec-rails', '~> 3.4'
-  gem 'factory_girl_rails', '~> 4.5'
-  gem 'shoulda-matchers', '~> 3.0'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', '~> 4.7'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov'
   gem 'simplecov-console'
   gem 'rails-erd'
@@ -61,3 +64,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
 end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,4 +1,4 @@
-RAILS_REQUIREMENT = '~> 4.2.6'.freeze
+RAILS_REQUIREMENT = '5.0.0'.freeze
 
 def apply_template!
   assert_minimum_rails_version
@@ -9,6 +9,7 @@ def apply_template!
   template 'DEPLOYMENT.md.tt', force: true
 
   template 'Gemfile.tt', force: true
+  run 'bundle install --quiet'
 
   template 'example.env.tt', 'example.env'
   template 'ruby-version.tt', '.ruby-version'

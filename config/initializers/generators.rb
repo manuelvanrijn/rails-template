@@ -4,7 +4,7 @@ Rails.application.config.generators do |generate|
   generate.view_specs false
   generate.routing_specs false
   generate.request_specs false
-  generate.javascript_engine false
-  generate.stylesheets false
-  # generate.jbuilder false
+  generate.controller_specs false
+  generate.assets false
+  generate.jbuilder false
 end

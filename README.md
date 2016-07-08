@@ -6,13 +6,14 @@ Simple template to bootstrap the stuff I always use (and some variants I might n
 
 This template currently works with:
 
-Rails 4.2.x
+Rails 5
 MySQL
 
 ## Usage
 
 ```
-rails new <project_name>\
+$ gem install rails -v 5.0.0
+$ rails new <project_name>\
   -TB\
   -d mysql\
   -m https://raw.githubusercontent.com/manuelvanrijn/rails-template/master/template.rb
@@ -46,7 +47,6 @@ Create a `~/.railsrc` file with these contents:
 * ERD rake task
 * RuboCop
 * dotenv for managing environment variables
-* Draper for model/view decorating
 * RSpec as test suite with:
   * SimpleCov for code coverage
   * FactoryGirl

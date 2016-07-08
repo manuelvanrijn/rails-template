@@ -2,10 +2,10 @@
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
   <<-'RUBY'
 # variant: twitter-bootstrap
-gem 'bootstrap-sass', '~> 3.3.1'
-gem 'autoprefixer-rails'
-gem 'bootstrap_form'
-gem 'active_link_to'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails', '~> 6.3.7'
+gem 'bootstrap_form', '~> 2.4'
+gem 'active_link_to', '~> 1.0.3'
 
   RUBY
 end
