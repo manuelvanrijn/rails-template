@@ -24,7 +24,10 @@ insert_into_file 'config/environments/production.rb', after: '# config.action_ma
 
   # Email settings example
   # config.action_mailer.asset_host = 'https://your-domain.tld'
-  # config.action_mailer.default_url_options = { host: 'your-domain.tld', protocol: 'https' }
+  # config.action_mailer.default_url_options = {
+  #   host: 'your-domain.tld',
+  #   protocol: 'https'
+  # }
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
   #   address:                'smtp.gmail.com',
