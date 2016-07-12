@@ -4,6 +4,12 @@ def apply_template!
   assert_minimum_rails_version
   add_template_repository_to_source_path
 
+  git init: '--quiet'
+  git add: '.'
+  git commit: "-aqm 'Initial commit'"
+  git checkout: '-b develop --quiet'
+  git checkout: '-b project-bootstrap --quiet'
+
   remove_file 'README.rdoc'
   template 'README.md.tt', force: true
   template 'DEPLOYMENT.md.tt', force: true
@@ -27,6 +33,9 @@ def apply_template!
 
   run 'bundle install --quiet'
 
+  git add: '.'
+  git commit: "-aqm 'bootstrapped project'"
+
   apply 'variants/template.rb'
 
   # run a final bundle update to have the latest and greatest version of all
@@ -35,11 +44,10 @@ def apply_template!
   run 'bin/setup'
   generate_spring_binstubs
 
-  # setup git
-  git :init
-  git add: '.'
-  git commit: "-aqm 'Initial commit'"
-  git checkout: '-b develop'
+  git commit: "-aqm 'finalized'"
+  git checkout: 'develop'
+  git merge: 'project-bootstrap --no-ff --no-edit'
+  git branch: '-D project-bootstrap --quiet'
 end
 
 require 'fileutils'

@@ -6,9 +6,9 @@
       .panel-body
         = form_for :user_session, url: login_path do |f|
           .form-group
-            = f.text_field :email, class: 'form-control form-email', :placeholder => t('user_sessions.email')
+            = f.text_field :email, class: 'form-control form-email', placeholder: t('user_sessions.email')
 
           .form-group
-            = f.password_field :password, class: 'form-control form-password', :placeholder => t('user_sessions.password')
+            = f.password_field :password, class: 'form-control form-password', placeholder: t('user_sessions.password')
 
           = f.submit t('user_sessions.login'), class: 'btn btn-primary'

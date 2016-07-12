@@ -9,9 +9,7 @@ def setup!
     test 'node -v' => 'v'
     run  'npm update -g npm'
     run  'npm install -g bower --no-spin'
-    run  'rbenv rehash' if rbenv_installed?
     run  'bundle install'
-    run  'rbenv rehash' if rbenv_installed?
     copy 'example.env'
     test_local_env_contains_required_keys
     run  'bin/rake db:create:all'

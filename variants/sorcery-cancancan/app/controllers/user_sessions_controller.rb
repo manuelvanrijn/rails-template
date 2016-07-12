@@ -15,7 +15,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to login_path, notice: "#{t('user_sessions.login_destroyed')}"
+    redirect_to login_path, notice: t('user_sessions.login_destroyed')
   end
 
   private

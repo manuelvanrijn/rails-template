@@ -5,3 +5,6 @@ end
 
 # Beter scaffold controller
 copy_file 'lib/templates/rails/scaffold_controller/controller.rb'
+
+# Better draper template
+copy_file 'lib/templates/rails/decorator/decorator.rb'

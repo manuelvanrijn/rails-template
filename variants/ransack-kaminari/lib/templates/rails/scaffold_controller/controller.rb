@@ -4,3 +4,7 @@ insert_into_file 'lib/templates/rails/scaffold_controller/controller.rb', after:
     @<%= plural_table_name %> = @q.result.page(params[:page])
   RUBY
 end
+
+gsub_file 'lib/templates/rails/scaffold_controller/controller.rb',
+          'respond_with @<%= plural_table_name %>',
+          'respond_with @<%= plural_table_name %>, meta: pagination_meta(@<%= plural_table_name %>)'

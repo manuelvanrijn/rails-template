@@ -7,5 +7,8 @@ insert_into_file \
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.asset_host = 'http://localhost:3000'
+
+  # Disable lograge for test
+  config.lograge.enabled = false
   RUBY
 end

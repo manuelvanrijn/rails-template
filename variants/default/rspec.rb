@@ -14,5 +14,4 @@ copy_file 'spec/support/spec_file_name_enforcer.rb'
 copy_file 'spec/support/tasks.rb'
 copy_file 'spec/support/time_helpers.rb'
 
-copy_file 'spec/extensions/draper_decorator_ext_spec.rb'
 copy_file 'spec/tasks/example_spec.rb'

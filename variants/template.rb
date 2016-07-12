@@ -1,41 +1,51 @@
 def apply_variants
   # always apply the default variant
   apply 'variants/default/template.rb'
+  git commit: "-aqm 'applied default'"
 
-  # ask and apply other variants
-  apply 'variants/twitter-bootstrap/template.rb'  if apply_twitter_bootstrap?
-  apply 'variants/sorcery-cancancan/template.rb'  if apply_sorcery_cancancan?
-  apply 'variants/ransack-kaminari/template.rb'   if apply_ransack_kaminari?
-  apply 'variants/sidekiq/template.rb'            if apply_sidekiq?
+  ask_options
+
+  if apply_twitter_bootstrap?
+    apply 'variants/twitter-bootstrap/template.rb'
+    commit('applied twitter-bootstrap')
+  end
+  if apply_sorcery_cancancan?
+    apply 'variants/sorcery-cancancan/template.rb'
+    commit('applied sorcery_cancancan')
+  end
+  if apply_ransack_kaminari?
+    apply 'variants/ransack-kaminari/template.rb'
+    commit('applied ransack_kaminari')
+  end
+  if apply_sidekiq?
+    apply 'variants/sidekiq/template.rb'
+    commit('applied sidekiq')
+  end
+end
+
+def ask_options
+  apply_twitter_bootstrap?
+  apply_sorcery_cancancan?
+  apply_ransack_kaminari?
+  apply_sidekiq?
 end
 
 def apply_twitter_bootstrap?
-  if @variant_twitter_bootstrap.nil?
-    @variant_twitter_bootstrap = yes_wizard? 'Do you want to include twitter bootstrap?'
-  end
-  @variant_twitter_bootstrap
+  @variant_twitter_bootstrap ||= yes_wizard?  '          [THEME] | include twitter bootstrap?'
 end
 
 def apply_sorcery_cancancan?
-  if @variant_sorcery_cancancan.nil?
-    @variant_sorcery_cancancan ||= yes_wizard? 'Do you want to include Authentication & Authorization using sorcery and cancancan?'
-  end
-  @variant_sorcery_cancancan
+  @variant_sorcery_cancancan ||= yes_wizard?  '           [AUTH] | include Authentication & Authorization using sorcery and cancancan?'
 end
 
 def apply_ransack_kaminari?
-  if @variant_ransack_kaminari.nil?
-    @variant_ransack_kaminari ||= yes_wizard? 'Do you want to pagination/searching/ordering out of the box using kaminari and ransack?'
-  end
-  @variant_ransack_kaminari
+  @variant_ransack_kaminari ||= yes_wizard?   '[SEARCH/PAGINATE] | include pagination/searching/ordering out of the box using kaminari and ransack?'
 end
 
 def apply_sidekiq?
-  if @variant_sidekiq.nil?
-    @variant_sidekiq = yes_wizard? 'Do you want to include SideKiq for processing heavy or time intensive (background) tasks?'
-  end
-  @variant_sidekiq
+  @variant_sidekiq ||= yes_wizard?            '[BACKGROUND JOBS] | include Sidekiq for processing heavy or time intensive (background) tasks?'
 end
+
 #
 # Helper methods
 #
@@ -66,6 +76,11 @@ end
 
 def no_wizard?(question)
   !yes_wizard?(question)
+end
+
+def commit(message)
+  git add: '.'
+  git commit: "-aqm '#{message}'"
 end
 
 # Let's take some orders

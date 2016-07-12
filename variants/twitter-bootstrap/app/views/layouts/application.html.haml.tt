@@ -6,16 +6,20 @@
       <%= app_name %>
       version: #{Rails.application.config.version} (#{l(Rails.application.config.version_time)})
 
+    = action_cable_meta_tag
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     /[if lt IE 9]
-      %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"}
+      %script{src: "//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"}
+      %script{src: "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"}
+      %script{src: "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"}
+      %script{src: "//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"}
     = csrf_meta_tags
   %body{class: "#{controller.controller_name}"}
     %nav.navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
       .container-fluid
         .navbar-header
-          %button.navbar-toggle.collapsed{'aria-controls' => 'navbar', 'aria-expanded' => 'false', 'data-target' => '#navbar', 'data-toggle' => 'collapse', type: 'button'}
+          %button.navbar-toggle.collapsed{'data-target': '#navbar', 'data-toggle': 'collapse', type: 'button'}
             %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
@@ -24,6 +28,9 @@
 
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
+            / Navigation items
+            / %li.nav-item{class: "#{'active' if is_active_link?(root_path)}"}
+            /   = link_to ApplicationRecord.model_name.human.pluralize, root_path, class: 'nav-label'
 
           %ul.nav.navbar-nav.navbar-right
 

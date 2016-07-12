@@ -1,8 +1,4 @@
 en:
-  success_create: Successfully created
-  success_update: Successfully updated
-  success_destroy: Successfully deleted
-  fail_destroy: Failed to delete
   true_value: Yes
   false_value: No
 
@@ -14,7 +10,3 @@ en:
     delete_question: Are you sure you want to delete this?
     edit: Edit
     show: Details
-
-  decorators:
-    user:
-      full_name: Fullname

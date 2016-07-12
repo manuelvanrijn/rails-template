@@ -3,7 +3,8 @@ if apply_twitter_bootstrap?
     <<-'RUBY'
   # override default kaminari pagination method to use twitter-bootstrap theme
   def paginate(objects, options={})
-    options.reverse_merge!(theme: 'twitter-bootstrap-3')
+    options.reverse_merge!(theme: 'twitter-bootstrap-3',
+                           pagination_class: 'pagination-sm no-margin')
     super(objects, options)
   end
   RUBY

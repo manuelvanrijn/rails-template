@@ -6,6 +6,7 @@
       <%= app_name %>
       version: #{Rails.application.config.version} (#{l(Rails.application.config.version_time)})
 
+    = action_cable_meta_tag
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags

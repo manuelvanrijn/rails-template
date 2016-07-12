@@ -21,5 +21,23 @@ insert_into_file 'config/environments/development.rb', before: /^end/ do
     Bullet.bullet_logger = true
     Bullet.rails_logger = true
   end
+
+  # Disable lograge for development
+  config.lograge.enabled = false
+  RUBY
+end
+
+# Cache
+comment_lines 'config/environments/development.rb', /config.cache_store = :memory_store/
+insert_into_file 'config/environments/development.rb', after: /config.cache_store = :memory_store\n/ do
+  <<-RUBY
+    config.cache_store = :readthis_store, {
+      expires_in: 1.hour.to_i,
+      namespace: 'cache',
+      redis: {
+        url: ENV.fetch('REDIS_URL'),
+        driver: :hiredis
+      }
+    }
   RUBY
 end

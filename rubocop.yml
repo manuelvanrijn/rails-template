@@ -3,16 +3,21 @@ AllCops:
   Exclude:
     - bin/*
     - Capfile
+    - app/controllers/concerns/decorate_instance_variables.rb
     - config/boot.rb
     - config/environment.rb
+    - config/puma.rb
     - db/schema.rb
     - db/seeds.rb
+    - spec/rails_helper.rb
     - Gemfile
     - Guardfile
     - Rakefile
     - config/initializers/*
+    - config/environments/*
     - db/migrate/*
     - lib/templates/**/*
+    - spec/factories/**/*
     - spec/support/**/*
 
 Metrics/LineLength:

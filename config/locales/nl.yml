@@ -1,8 +1,4 @@
 nl:
-  success_create: Aanmaken gelukt
-  success_update: De aanpassingen zijn uitgevoerd
-  success_destroy: Verwijderen is gelukt
-  fail_destroy: Het verwijderen is niet gelukt
   true_value: Ja
   false_value: Nee
 
@@ -14,7 +10,3 @@ nl:
     delete_question: Weet u zeker dat u dit wilt verwijderen?
     edit: Bewerken
     show: Details
-
-  decorators:
-    user:
-      full_name: Volledige naam

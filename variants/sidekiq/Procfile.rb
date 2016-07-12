@@ -1,6 +1,5 @@
-insert_into_file 'Procfile', after: "web:         bundle exec rails s\n" do
+append_to_file 'Procfile' do
   <<-'RUBY'
-redis:       redis-server
-sidekiq:     bundle exec sidekiq
+sidekiq:     bundle exec sidekiq -C config/sidekiq.yml
   RUBY
 end

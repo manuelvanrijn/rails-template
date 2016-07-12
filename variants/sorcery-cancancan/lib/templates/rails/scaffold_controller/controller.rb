@@ -1,3 +1,12 @@
+<%
+def flash?
+  if defined?(ApplicationController)
+    !ApplicationController.responder.ancestors.include?(Responders::FlashResponder)
+  else
+    Rails.application.config.responders.flash_keys.blank?
+  end
+end
+-%>
 <% if namespaced? -%>
 require_dependency "<%= namespaced_file_path %>/application_controller"
 
@@ -7,60 +16,44 @@ class <%= controller_class_name %>Controller < ApplicationController
   before_action :require_login
   load_and_authorize_resource :<%= singular_table_name %>
 
-  # GET <%= route_url %>
+  respond_to :html, :json
+
+<% unless options[:singleton] -%>
   def index
+    respond_with @<%= plural_table_name %>
   end
+<% end -%>
 
-  # GET <%= route_url %>/1
   def show
+    respond_with @<%= singular_table_name %>
   end
 
-  # GET <%= route_url %>/new
   def new
+    respond_with @<%= singular_table_name %>
   end
 
-  # GET <%= route_url %>/1/edit
   def edit
+    respond_with @<%= singular_table_name %>
   end
 
-  # POST <%= route_url %>
   def create
-    respond_to do |format|
-      if @<%= orm_instance.save %>
-        format.html { redirect_to @<%= singular_table_name %>, notice: t('success_create') }
-        format.json { render :show, status: :created, location: @<%= singular_table_name %> }
-      else
-        format.html { render :new }
-        format.json { render json: @<%= singular_table_name %>.errors, status: :unprocessable_entity }
-      end
-    end
+    @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
+    <%= "flash[:notice] = '#{class_name} was successfully created.' if " if flash? %>@<%= orm_instance.save %>
+    respond_with @<%= singular_table_name %>
   end
 
-  # PATCH/PUT <%= route_url %>/1
   def update
-    respond_to do |format|
-      if @<%= orm_instance.update("#{singular_table_name}_params") %>
-        format.html { redirect_to @<%= singular_table_name %>, notice: t('success_update') }
-        format.json { render :show, status: :ok, location: @<%= singular_table_name %> }
-      else
-        format.html { render :edit }
-        format.json { render json: @<%= singular_table_name %>.errors, status: :unprocessable_entity }
-      end
-    end
+    <%= "flash[:notice] = '#{class_name} was successfully updated.' if " if flash? %>@<%= orm_instance.update("#{singular_table_name}_params") %>
+    respond_with @<%= singular_table_name %>
   end
 
-  # DELETE <%= route_url %>/1
   def destroy
     @<%= orm_instance.destroy %>
-    respond_to do |format|
-      format.html { redirect_to <%= index_helper %>_url, notice: t('success_destroy') }
-      format.json { head :no_content }
-    end
+    respond_with @<%= singular_table_name %>
   end
 
   private
 
-  # Only allow a trusted parameter "white list" through.
   def <%= "#{singular_table_name}_params" %>
     <%- if attributes_names.empty? -%>
     params[:<%= singular_table_name %>]

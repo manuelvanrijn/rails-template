@@ -35,7 +35,6 @@ Create a `~/.railsrc` file with these contents:
 
 * Setup git master and develop branch structure
 * HAML instead of ERB
-* Puma instead of Webrick for development
 * Foreman to bootup rails (and other dependent processes) for development
 * Airbrake (errbit) for error handling and capistrano deployment hooks
 * Capistrano for deployment with two environments (production, staging)
@@ -63,7 +62,6 @@ Create a `~/.railsrc` file with these contents:
 * And some handy development gems:
   * binding.pry
   * better_errors - the name says it all
-  * quiet_assets - remove's log requests for js, css etc. so we can focus on the real requests
   * letter_opener - open mails in the browser
   * bullet - to detect N+1 queries
 

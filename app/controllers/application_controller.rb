@@ -1,12 +1,6 @@
-insert_into_file 'app/controllers/application_controller.rb', before: /^end/ do
+insert_into_file 'app/controllers/application_controller.rb', after: /ActionController::Base\n/ do
   <<-'RUBY'
-
-  # override render to decorate all objects using the 'defer_draper' gem
-  def render(*args)
-    decorate_all
-    super
-  end
-
-  private
+  include LogragePayload
+  include DecorateInstanceVariables
   RUBY
 end

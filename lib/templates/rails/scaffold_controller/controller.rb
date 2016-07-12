@@ -20,17 +20,17 @@ class <%= controller_class_name %>Controller < ApplicationController
 
 <% unless options[:singleton] -%>
   def index
-    respond_with(@<%= plural_table_name %>)
+    respond_with @<%= plural_table_name %>
   end
 <% end -%>
 
   def show
-    respond_with(@<%= singular_table_name %>)
+    respond_with @<%= singular_table_name %>
   end
 
   def new
     @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
-    respond_with(@<%= singular_table_name %>)
+    respond_with @<%= singular_table_name %>
   end
 
   def edit
@@ -39,17 +39,17 @@ class <%= controller_class_name %>Controller < ApplicationController
   def create
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
     <%= "flash[:notice] = '#{class_name} was successfully created.' if " if flash? %>@<%= orm_instance.save %>
-    respond_with(@<%= singular_table_name %>)
+    respond_with @<%= singular_table_name %>
   end
 
   def update
     <%= "flash[:notice] = '#{class_name} was successfully updated.' if " if flash? %>@<%= orm_instance.update("#{singular_table_name}_params") %>
-    respond_with(@<%= singular_table_name %>)
+    respond_with @<%= singular_table_name %>
   end
 
   def destroy
     @<%= orm_instance.destroy %>
-    respond_with(@<%= singular_table_name %>)
+    respond_with @<%= singular_table_name %>
   end
 
   private

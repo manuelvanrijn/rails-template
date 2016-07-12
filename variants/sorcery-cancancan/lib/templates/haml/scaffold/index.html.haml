@@ -1,0 +1,25 @@
+%h1= <%= class_name %>.model_name.human.pluralize
+
+%table.table.table-striped
+  %thead
+    %tr
+<% for attribute in attributes -%>
+      %th= <%= class_name %>.human_attribute_name :<%= attribute.name %>
+<% end -%>
+      %th{colspan: 3}
+
+  %tbody
+    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+      %tr
+<% for attribute in attributes -%>
+        %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+        - if can? :show, <%= singular_table_name %>
+          %td= link_to t('actions.show'), <%= singular_table_name %>
+        - if can? :update, <%= singular_table_name %>
+          %td= link_to t('actions.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
+        - if can? :destroy, <%= singular_table_name %>
+          %td= link_to t('actions.delete'), <%= singular_table_name %>, method: :delete, data: { confirm: t('actions.delete_question') }
+
+- if can? :create, <%= class_name %>
+  = link_to t('actions.create'), new_<%= singular_table_name %>_path, class: 'btn btn-primary'

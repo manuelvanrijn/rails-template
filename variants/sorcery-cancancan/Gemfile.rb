@@ -2,8 +2,8 @@
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
   <<-'RUBY'
 # variant: sorcery-cancancan
-gem 'sorcery'
-gem 'cancancan', '~> 1.10'
+gem 'sorcery', '~> 0.9.1'
+gem 'cancancan', '~> 1.15'
 
   RUBY
 end

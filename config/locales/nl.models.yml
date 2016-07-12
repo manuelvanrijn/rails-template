@@ -4,7 +4,9 @@ nl:
 
   activerecord:
     models:
-      user: Gebruiker
+      user:
+        one: Gebruiker
+        other: Gebruikers
 
     attributes:
       user:

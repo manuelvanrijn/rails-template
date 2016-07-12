@@ -1,7 +1,7 @@
-insert_into_file 'app/controllers/application_controller.rb', before: /  private/ do
+insert_into_file 'app/controllers/application_controller.rb', before: /  respond_to/ do
   <<-'RUBY'
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :back, alert: exception.message
+    redirect_back fallback_location: root_url, alert: exception.message
   end
 
   RUBY
