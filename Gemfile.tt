@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'bcrypt'<%= gemfile_requirement('bcrypt') %>
 gem 'oj'
 gem 'oj_mimic_json'
+gem 'sprockets', '3.6.3' # try to upgrade to ~> 3.7 after fix for sassc
 
 gem 'marco-polo'
 gem 'dotenv-rails', '>= 2.0'

@@ -2,7 +2,7 @@
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
   <<-'RUBY'
 # variant: ransack-kaminari
-gem 'ransack', git: 'https://github.com/activerecord-hackery/ransack.git', branch: 'master'
+gem 'ransack', '~> 1.8.0'
 gem 'kaminari', '~> 0.17.0'
 
   RUBY

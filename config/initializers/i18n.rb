@@ -1,4 +1,4 @@
-Rails.application.config.time_zone = 'Amsterdam'
+# default language
 Rails.application.config.i18n.default_locale = :nl
 
 # supported locales
