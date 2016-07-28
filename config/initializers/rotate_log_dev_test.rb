@@ -2,10 +2,11 @@
 # In production use a more robust system like /etc/logrotate.d/.
 #
 if Rails.env.development? || Rails.env.test?
-  Pathname.new(Rails.root.join('log')).children.each do |log_file|
-    if log_file.file? && log_file.size > 20_000_000
-      FileUtils.cp(log_file, "#{log_file}.1")
-      log_file.truncate(0)
-    end
+  Dir.glob(Rails.root.join('log', '*.log')).each do |log_file|
+    next if File.size(log_file) < 20_000_000
+
+    File.delete "#{log_file}.1" if File.exist?("#{log_file}.1")
+    FileUtils.cp(log_file, "#{log_file}.1")
+    File.truncate(log_file, 0)
   end
 end
