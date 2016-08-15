@@ -1,6 +1,6 @@
 nl:
-  true_value: Ja
-  false_value: Nee
+  'true': Ja
+  'false': Nee
 
   actions:
     back: Terug

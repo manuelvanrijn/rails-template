@@ -1,6 +1,6 @@
 en:
-  true_value: Yes
-  false_value: No
+  'true': Yes
+  'false': No
 
   actions:
     back: Back

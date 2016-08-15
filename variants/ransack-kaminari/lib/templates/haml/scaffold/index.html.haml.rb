@@ -1,5 +1,5 @@
 if apply_twitter_bootstrap?
-  insert_into_file 'lib/templates/haml/scaffold/index.html.haml', after: /%h1= <%= class_name %>.model_name.human.pluralize/ do
+  insert_into_file 'lib/templates/haml/scaffold/index.html.haml', after: /%h1= <%= class_name %>.model_name.human(count: 2)/ do
     <<-'RUBY'
 
 .row

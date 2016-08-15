@@ -30,7 +30,7 @@
           %ul.nav.navbar-nav
             / Navigation items
             / %li.nav-item{class: "#{'active' if is_active_link?(root_path)}"}
-            /   = link_to ApplicationRecord.model_name.human.pluralize, root_path, class: 'nav-label'
+            /   = link_to ApplicationRecord.model_name.human(count: 2), root_path, class: 'nav-label'
 
           %ul.nav.navbar-nav.navbar-right
 

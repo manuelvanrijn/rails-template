@@ -10,7 +10,7 @@ nl:
 
     attributes:
       user:
-        name: &name
+        name: *name
         email: E-mailadres
         password: Wachtwoord
         password_confirmation: Wachtwoord herhalen
