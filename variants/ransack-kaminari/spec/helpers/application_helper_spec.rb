@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ApplicationHelper, type: :helper do
   describe '#paginate' do
     it 'overrides the paginate to include the bootstrap theme' do

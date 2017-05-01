@@ -1,6 +1,6 @@
 # add additional Gems
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
-  <<-'RUBY'
+  <<-RUBY
 # variant: ransack-kaminari
 gem 'ransack', '~> 1.8.0'
 gem 'kaminari', '~> 0.17.0'

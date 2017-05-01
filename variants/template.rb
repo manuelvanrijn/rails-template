@@ -63,6 +63,7 @@ def ask_wizard_with_default(question, default)
 end
 
 def yes_wizard?(question)
+  return true if ENV['DEBUG'].present?
   answer = ask_wizard(question + " \033[33m(y/n)\033[0m")
   case answer.downcase
   when 'yes', 'y'

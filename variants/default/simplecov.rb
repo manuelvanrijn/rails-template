@@ -1,5 +1,5 @@
 insert_into_file 'spec/rails_helper.rb', after: "ENV['RAILS_ENV'] ||= 'test'\n" do
-  <<-'RUBY'
+  <<-RUBY
 
 require 'simplecov'
 SimpleCov.start 'rails' do
@@ -15,7 +15,7 @@ end
 end
 
 insert_into_file 'spec/rails_helper.rb', after: "require 'rspec/rails'\n" do
-  <<-'RUBY'
+  <<-RUBY
 
 if ENV['CI']
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[

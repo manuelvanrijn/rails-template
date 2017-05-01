@@ -1,10 +1,10 @@
-set :rails_env, 'staging'
-set :branch,    :develop
+set :rails_env,               'staging'
+set :branch,                  :develop
 
 # RBENV
-set :rbenv_type,        :system
-set :rbenv_custom_path, '/opt/rbenv'
-set :rbenv_ruby,        '<%= RUBY_VERSION %>'
+set :rbenv_type,              :system
+set :rbenv_custom_path,       '/opt/rbenv'
+set :rbenv_ruby,              '<%= RUBY_VERSION %>'
 
 # Extended Server Syntax
 # ======================
@@ -12,6 +12,6 @@ set :rbenv_ruby,        '<%= RUBY_VERSION %>'
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-set :deploy_to, '/home/deployer_staging/<%= app_name %>'
+set :deploy_to,               '/home/deployer_staging/<%= lower_case_app_name %>'
 
 server 'staging.example.com', user: 'deployer_staging', roles: %w(app web db)

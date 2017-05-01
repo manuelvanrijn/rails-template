@@ -1,6 +1,6 @@
 if apply_twitter_bootstrap?
   insert_into_file 'lib/templates/haml/scaffold/index.html.haml', after: /%h1= <%= class_name %>.model_name.human(count: 2)/ do
-    <<-'RUBY'
+    <<-RUBY
 
 .row
   .col-sm-6
@@ -17,7 +17,7 @@ if apply_twitter_bootstrap?
   end
 else
   insert_into_file 'lib/templates/haml/scaffold/index.html.haml', after: /%h1= <%= class_name %>.model_name.human\n/ do
-    <<-'RUBY'
+    <<-RUBY
 
 = search_form_for @q, class: 'search-form' do |f|
   = f.label :<%= attributes.first.name %>_cont
@@ -38,7 +38,7 @@ if apply_sorcery_cancancan?
   gsub_file 'lib/templates/haml/scaffold/index.html.haml',
             /  = link_to t\('actions.create'\).*\n/, ''
   append_to_file 'lib/templates/haml/scaffold/index.html.haml' do
-<<-'RUBY'
+<<-RUBY
 .row
   .col-sm-6
     - if can? :create, <%= class_name %>

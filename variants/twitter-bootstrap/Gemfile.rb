@@ -1,6 +1,6 @@
 # add additional Gems
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
-  <<-'RUBY'
+  <<-RUBY
 # variant: twitter-bootstrap
 gem 'bootstrap-sass', '~> 3.3'
 gem 'autoprefixer-rails', '~> 6.3'

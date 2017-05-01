@@ -6,7 +6,7 @@ copy_file 'variants/twitter-bootstrap/app/assets/stylesheets/_vars.sass',
           'app/assets/stylesheets/_vars.sass'
 
 append_to_file 'app/assets/stylesheets/_components.sass' do
-  <<-'RUBY'
+  <<-RUBY
 
 @import rails_bootstrap_forms
   RUBY

@@ -9,7 +9,6 @@ copy_file 'config/initializers/assets.rb', force: true
 copy_file 'config/initializers/errbit.rb'
 copy_file 'config/initializers/generators.rb'
 copy_file 'config/initializers/i18n.rb'
-copy_file 'config/initializers/haml.rb'
 copy_file 'config/initializers/lib_extensions.rb'
 copy_file 'config/initializers/lograge.rb'
 copy_file 'config/initializers/rotate_log_dev_test.rb'

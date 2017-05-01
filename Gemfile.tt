@@ -1,32 +1,34 @@
 source 'https://rubygems.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 gem 'rails', '<%= Rails.version %>'
 gem 'mysql2'
 gem 'sassc-rails', '>= 1.3.0'
 gem 'mini_racer', '>= 0.1.4'
 gem 'coffee-rails'<%= gemfile_requirement('coffee-rails') %>
-gem 'jquery-rails'
 gem 'bcrypt'<%= gemfile_requirement('bcrypt') %>
-gem 'oj'
-gem 'oj_mimic_json'
-gem 'sprockets', '3.6.3' # try to upgrade to ~> 3.7 after fix for sassc
+gem 'jquery-rails'
+gem 'webpacker'
+gem 'sprockets', '~> 3.7.1'
 
 gem 'marco-polo'
 gem 'dotenv-rails', '>= 2.0'
-gem 'bower-rails', '~> 0.10'
 gem 'airbrake', '~> 5.4'
 gem 'lograge'
 
 gem 'active_model_serializers', '~> 0.10'
-gem 'draper', '~> 3.0.0.pre1'
-
-gem 'rails-i18n', '>= 4.0'
-gem 'haml-rails', '~> 0.9'
-gem 'responders', '~> 2.2.0'
+gem 'rails-i18n', '~> 5.0.0'
+gem 'haml-rails', '~> 1.0'
+gem 'responders', '~> 2.4.0'
 gem 'email_validator'
 gem 'recipient_interceptor'
 
-gem 'font-awesome-rails', '~> 4.6'
+# locked untill release of 4.7.0.2
+gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails', ref: '6875363'
 
 gem 'redis', '~> 3.0'
 gem 'redis-namespace', '~> 1.5.2'
@@ -34,6 +36,27 @@ gem 'readthis', '~> 1.3'
 gem 'hiredis', '~> 0.6'
 
 group :development, :test do
+  gem 'byebug'
+  gem 'pry-byebug'
+  gem 'letter_opener'
+  gem 'bullet'
+  gem 'database_cleaner'
+  gem 'coderay'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'fuubar'
+  gem 'factory_girl_rails', '~> 4.7'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov'
+  gem 'simplecov-console'
+
+  gem 'capybara'
+  # selenium-webdriver & chromedriver-helper used by
+  # JavaScript-dependent feature specs (`js: true`):
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+end
+
+group :development do
   gem 'capistrano', '3.5.0'
   gem 'capistrano-rbenv', '~> 2.0.4'
   gem 'capistrano-bundler', '~> 1.1.4'
@@ -43,33 +66,17 @@ group :development, :test do
   gem 'capistrano-rails-console', '~> 1.0.2'
   gem 'airbrussh', '~> 1.0.2', require: false
 
-  gem 'puma', '~> 3.0'
+  gem 'puma'<%= gemfile_requirement('puma') %>
   gem 'foreman', '~> 0.82'
   gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0'
-  gem 'byebug'
-  gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'letter_opener'
-  gem 'bullet'
-  gem 'database_cleaner'
-  gem 'coderay'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'factory_girl_rails', '~> 4.7'
-  gem 'shoulda-matchers', '~> 3.1'
-  gem 'simplecov'
-  gem 'simplecov-console'
   gem 'rails-erd'
   gem 'awesome_print'
   gem 'brakeman', require: false
 
-  gem 'capybara'
-  # selenium-webdriver & chromedriver-helper used by
-  # JavaScript-dependent feature specs (`js: true`):
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

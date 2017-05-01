@@ -1,5 +1,5 @@
 insert_into_file 'app/controllers/application_controller.rb', before: /  respond_to/ do
-  <<-'RUBY'
+  <<-RUBY
   rescue_from CanCan::AccessDenied do |exception|
     redirect_back fallback_location: root_url, alert: exception.message
   end
@@ -8,7 +8,7 @@ insert_into_file 'app/controllers/application_controller.rb', before: /  respond
 end
 
 insert_into_file 'app/controllers/application_controller.rb', before: /^end/ do
-  <<-'RUBY'
+  <<-RUBY
 
   def not_authenticated
     # don't add the alert when we just went to de root path

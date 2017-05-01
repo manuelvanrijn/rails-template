@@ -1,5 +1,5 @@
 insert_into_file 'app/views/layouts/application.html.haml', after: /^*.navbar-right/ do
-  <<-'RUBY'
+  <<-RUBY
 
             - if current_user
               %li.dropdown

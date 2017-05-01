@@ -27,7 +27,7 @@ Run the `bin/setup` script. This script will:
 ### Run it!
 
 1. Run `rspec spec` to make sure everything works.
-2. Run `forman start` to start the Rails app (and other dependent processes if present).
+2. Run `foreman start` to start the Rails app (and other dependent processes if present).
 
 [rbenv]:https://github.com/sstephenson/rbenv
 

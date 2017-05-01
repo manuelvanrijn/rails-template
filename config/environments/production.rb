@@ -2,7 +2,7 @@ uncomment_lines 'config/environments/production.rb', /for NGINX/i
 comment_lines 'config/environments/production.rb', /config.assets.js_compressor = :uglifier/
 
 insert_into_file 'config/environments/production.rb', after: "config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?\n" do
-  <<-'RUBY'
+  <<-RUBY
 
   # Enable deflate / gzip compression of controller-generated responses
   config.middleware.use Rack::Deflater
@@ -11,7 +11,7 @@ end
 
 comment_lines 'config/environments/production.rb', /config.log_tags = \[ :request_id \]/
 insert_into_file 'config/environments/production.rb', after: /config.log_tags = \[ :request_id \]\n/ do
-<<-'RUBY'
+<<-RUBY
 
   # Enable lograge for development
   config.lograge.enabled = true
@@ -20,7 +20,7 @@ end
 
 # mail settings
 insert_into_file 'config/environments/production.rb', after: '# config.action_mailer.raise_delivery_errors = false' do
-  <<-'RUBY'
+  <<-RUBY
 
   # Email settings example
   # config.action_mailer.asset_host = 'https://your-domain.tld'

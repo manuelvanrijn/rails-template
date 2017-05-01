@@ -8,14 +8,14 @@ def setup!
     run  'gem install bundler --no-document --conservative'
     test 'node -v' => 'v'
     run  'npm update -g npm'
-    run  'npm install -g bower --no-spin'
+    run  'npm install -g yarn'
     run  'bundle install'
     copy 'example.env'
     test_local_env_contains_required_keys
-    run  'bin/rake db:create:all'
-    run  'bin/rake db:migrate'
-    run  'bin/rake db:seed'
-    run  'bin/rake bower:install:development'
+    run  'bin/rails db:create:all'
+    run  'bin/rails db:migrate'
+    run  'bin/rails db:seed'
+    rub  'bin/yarn'
   end
 end
 

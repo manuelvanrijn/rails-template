@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 # RSpec.describe 'Example tasks', type: :task do
 #   describe '#task_one' do
 

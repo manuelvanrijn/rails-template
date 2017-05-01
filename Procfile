@@ -1,1 +1,2 @@
-web:         bin/rails server Puma -p 3000 -C config/puma.rb
+web:         PORT=3000 bin/rails server puma
+webpacker:   bin/webpack-dev-server

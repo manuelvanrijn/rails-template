@@ -1,9 +1,10 @@
-development:
-  adapter: async
+default: &default
+  adapter: redis
+  url: <%= ENV['REDIS_URL'] %>
+
+development: *default
+staging: *default
+production: *default
 
 test:
   adapter: async
-
-production:
-  adapter: redis
-  url: <%= ENV['REDIS_URL'] %>

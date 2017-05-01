@@ -1,6 +1,6 @@
 # add additional Gems
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
-  <<-'RUBY'
+  <<-RUBY
 # variant: sidekiq
 gem 'rspec-sidekiq', '~> 2.2', group: :test
 gem 'sidekiq', '~> 4.1.2'

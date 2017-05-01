@@ -1,5 +1,5 @@
 append_to_file 'config/locales/nl.yml' do
-  <<-'RUBY'
+  <<-RUBY
 
   user_sessions:
     title: Login

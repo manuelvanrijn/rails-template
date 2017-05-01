@@ -16,7 +16,14 @@ $ gem install rails -v 5.0.0
 $ rails new <project_name>\
   -TB\
   -d mysql\
+  --webpack\
   -m https://raw.githubusercontent.com/manuelvanrijn/rails-template/master/template.rb
+```
+
+### libv8 errors?
+
+```
+bundle config build.libv8 --with-system-v8
 ```
 
 ### Install template as default for rails new

@@ -1,8 +1,8 @@
 # add additional Gems
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
-  <<-'RUBY'
+  <<-RUBY
 # variant: sorcery-cancancan
-gem 'sorcery', '~> 0.9.1'
+gem 'sorcery', '~> 0.10.3'
 gem 'cancancan', '~> 1.15'
 
   RUBY

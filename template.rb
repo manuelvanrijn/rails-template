@@ -1,4 +1,4 @@
-RAILS_REQUIREMENT = '5.0.0'.freeze
+RAILS_REQUIREMENT = '5.1.0'.freeze
 
 def apply_template!
   assert_minimum_rails_version
@@ -15,7 +15,7 @@ def apply_template!
   template 'DEPLOYMENT.md.tt', force: true
 
   template 'Gemfile.tt', force: true
-  run 'bundle install --quiet'
+  run 'bundle install --quiet' unless ENV['DEBUG'].present?
 
   template 'example.env.tt', 'example.env'
   template 'ruby-version.tt', '.ruby-version'
@@ -31,7 +31,7 @@ def apply_template!
   apply 'lib/template.rb'
   apply 'vendor/template.rb'
 
-  run 'bundle install --quiet'
+  run 'bundle install --quiet' unless ENV['DEBUG'].present?
 
   git add: '.'
   git commit: "-aqm 'bootstrapped project'"
@@ -41,7 +41,7 @@ def apply_template!
   # run a final bundle update to have the latest and greatest version of all
   # before we initial commit
   run 'bundle update --quiet'
-  run 'bin/setup'
+  run 'bin/setup' unless ENV['DEBUG'].present?
   generate_spring_binstubs
 
   git commit: "-aqm 'finalized'"
