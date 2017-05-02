@@ -6,13 +6,13 @@ Simple template to bootstrap the stuff I always use (and some variants I might n
 
 This template currently works with:
 
-Rails 5
+Rails 5.1.0
 MySQL
 
 ## Usage
 
 ```
-$ gem install rails -v 5.0.0
+$ gem install rails -v 5.1.0
 $ rails new <project_name>\
   -TB\
   -d mysql\
@@ -35,6 +35,7 @@ Create a `~/.railsrc` file with these contents:
 ```
 -TB
 -d mysql
+--webpack
 -m https://raw.githubusercontent.com/manuelvanrijn/rails-template/master/template.rb
 ```
 
