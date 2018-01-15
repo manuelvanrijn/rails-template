@@ -1,4 +1,4 @@
-RAILS_REQUIREMENT = '5.1.0'.freeze
+RAILS_REQUIREMENT = '5.1.4'.freeze
 
 def apply_template!
   assert_minimum_rails_version
@@ -42,7 +42,6 @@ def apply_template!
   # before we initial commit
   run 'bundle update --quiet'
   run 'bin/setup' unless ENV['DEBUG'].present?
-  generate_spring_binstubs
 
   git commit: "-aqm 'finalized'"
   git checkout: 'develop'

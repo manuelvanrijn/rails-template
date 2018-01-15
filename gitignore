@@ -1,10 +1,18 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/log/*.log.*
-/tmp
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore uploaded files in development
+/storage/*
 
 # Ignore (test) reports
 /brakeman-output.*
@@ -12,9 +20,12 @@
 /erd.pdf
 
 # Ignore results of `rake assets:precompile` or `rake bower:install`.
+/node_modules
+/yarn-error.log
 /public/assets/
 /vendor/assets/bower_components/
 /npm-debug.log
+.byebug_history
 
 # Never check passwords into source control!
 /.env

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "rspec_user#{n}@example.tld" }
     password 'password'

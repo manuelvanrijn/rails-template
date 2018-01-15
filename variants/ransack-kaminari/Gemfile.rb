@@ -2,8 +2,8 @@
 insert_into_file 'Gemfile', before: 'group :development, :test do' do
   <<-RUBY
 # variant: ransack-kaminari
-gem 'ransack', '~> 1.8.0'
-gem 'kaminari', '~> 0.17.0'
+gem 'ransack', '~> 1.8.4'
+gem 'kaminari', '~> 1.1.1'
 
   RUBY
 end

@@ -11,3 +11,9 @@ copy_file 'config/environments/staging.rb'
 
 apply 'config/initializers/template.rb'
 apply 'config/locales/template.rb'
+
+insert_into_file 'config/boot.rb', after: "require 'bundler/setup' # Set up gems listed in the Gemfile.\n" do
+  <<-RUBY
+require 'bootsnap/setup'
+  RUBY
+end

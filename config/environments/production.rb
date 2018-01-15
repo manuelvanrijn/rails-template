@@ -5,7 +5,7 @@ insert_into_file 'config/environments/production.rb', after: "config.public_file
   <<-RUBY
 
   # Enable deflate / gzip compression of controller-generated responses
-  config.middleware.use Rack::Deflater
+  config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
   RUBY
 end
 

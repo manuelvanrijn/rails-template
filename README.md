@@ -6,13 +6,13 @@ Simple template to bootstrap the stuff I always use (and some variants I might n
 
 This template currently works with:
 
-Rails 5.1.0
+Rails 5.1.4
 MySQL
 
 ## Usage
 
 ```
-$ gem install rails -v 5.1.0
+$ gem install rails -v 5.1.4
 $ rails new <project_name>\
   -TB\
   -d mysql\
@@ -56,7 +56,7 @@ Create a `~/.railsrc` file with these contents:
 * dotenv for managing environment variables
 * RSpec as test suite with:
   * SimpleCov for code coverage
-  * FactoryGirl
+  * FactoryBot
   * Database cleaner
   * Capybara for integration/headless-browser tests
   * shoulda-matchers

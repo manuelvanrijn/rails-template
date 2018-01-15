@@ -34,6 +34,9 @@ Run the `bin/setup` script. This script will:
 ## Rake tasks
 
 ```
+# see a list of missing unique indexes
+bin/rake inspect_unique_validations
+
 # generate an erd.pdf from your models
 bin/rake erd
 ```
