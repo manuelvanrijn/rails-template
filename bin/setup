@@ -15,7 +15,7 @@ def setup!
     run  'bin/rails db:create:all'
     run  'bin/rails db:migrate'
     run  'bin/rails db:seed'
-    rub  'bin/yarn'
+    run  'bin/yarn'
   end
 end
 
