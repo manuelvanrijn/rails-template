@@ -57,6 +57,7 @@ require 'shellwords'
 # invoked remotely via HTTP, that means the files are not present locally.
 # In that case, use `git clone` to download them to a local temporary dir.
 def add_template_repository_to_source_path
+  require 'tmpdir'
   if __FILE__ =~ %r{\Ahttps?://}
     source_paths.unshift(tempdir = Dir.mktmpdir('rails-template'))
     at_exit { FileUtils.remove_entry(tempdir) }
