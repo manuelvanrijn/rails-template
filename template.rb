@@ -29,7 +29,6 @@ def apply_template!
   apply 'config/template.rb'
   apply 'bin/template.rb'
   apply 'lib/template.rb'
-  apply 'vendor/template.rb'
 
   run 'bundle install --quiet' unless ENV['DEBUG'].present?
 

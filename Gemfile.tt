@@ -19,6 +19,7 @@ gem 'dotenv-rails', '>= 2.2.1'
 gem 'airbrake', '~> 5.4'
 gem 'lograge', '~> 0.7.1'
 
+gem 'active_decorator'
 gem 'active_model_serializers', '~> 0.10'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'haml-rails', '~> 1.0'
