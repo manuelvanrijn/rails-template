@@ -12,10 +12,11 @@ def setup!
     run  'bundle install'
     copy 'example.env'
     test_local_env_contains_required_keys
+    run  'yarn add webpack-cli -D'
+    run  'bin/yarn install'
     run  'bin/rails db:create:all'
     run  'bin/rails db:migrate'
     run  'bin/rails db:seed'
-    run  'bin/yarn'
   end
 end
 

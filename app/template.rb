@@ -6,7 +6,6 @@ template 'app/views/layouts/application.html.haml.tt',
 
 copy_file 'app/controllers/home_controller.rb'
 copy_file 'app/controllers/concerns/lograge_payload.rb'
-copy_file 'app/controllers/concerns/decorate_instance_variables.rb'
 
 copy_file 'app/views/home/index.html.haml', force: true
 
