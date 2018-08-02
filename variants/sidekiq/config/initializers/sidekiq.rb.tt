@@ -2,20 +2,20 @@
 sidekiq_namespace = "sidekiq_<%= lower_case_app_name %>_#{Rails.env}"
 
 Sidekiq.configure_server do |config|
-  config.redis = { url: ENV.fetch('REDIS_URL'), namespace: sidekiq_namespace }
+  config.redis = { url: ENV['REDIS_URL'], namespace: sidekiq_namespace }
   config.error_handlers << lambda do |exception, context|
     Airbrake.notify(exception, parameters: context)
   end
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { url: ENV.fetch('REDIS_URL'), namespace: sidekiq_namespace }
+  config.redis = { url: ENV['REDIS_URL'], namespace: sidekiq_namespace }
 end
 
 require 'sidekiq/web'
 require 'sidekiq-statistic'
 Sidekiq::Web.app_url = '/'
 Sidekiq::Web.use(Rack::Auth::Basic, 'Application') do |username, password|
-  username == ENV.fetch('SIDEKIQ_WEB_USERNAME') &&
-    password == ENV.fetch('SIDEKIQ_WEB_PASSWORD')
+  username == ENV['SIDEKIQ_WEB_USERNAME'] &&
+    password == ENV['SIDEKIQ_WEB_PASSWORD']
 end

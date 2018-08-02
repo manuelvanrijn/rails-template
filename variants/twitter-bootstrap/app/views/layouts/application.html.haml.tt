@@ -8,7 +8,6 @@
 
     = action_cable_meta_tag
     = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
     /[if lt IE 9]
       %script{src: "//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"}
       %script{src: "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"}
@@ -42,3 +41,7 @@
           = msg if msg.is_a?(String)
 
       = yield
+
+  = javascript_include_tag  'application'
+  = javascript_pack_tag     'application'
+  = yield :javascripts

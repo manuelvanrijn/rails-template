@@ -6,13 +6,13 @@ Simple template to bootstrap the stuff I always use (and some variants I might n
 
 This template currently works with:
 
-Rails 5.1.4
+Rails 5.2.0
 MySQL
 
 ## Usage
 
 ```
-$ gem install rails -v 5.1.4
+$ gem install rails -v 5.2.0
 $ rails new <project_name>\
   -TB\
   -d mysql\
