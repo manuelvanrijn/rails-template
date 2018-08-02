@@ -15,6 +15,6 @@ end
 # Intercept all email sent in staging, and forward them to the
 # STAGING_MAIL_INTERCEPT_EMAIL_RECIPIENTS
 Mail.register_interceptor RecipientInterceptor.new(
-  ENV['STAGING_MAIL_INTERCEPT_EMAIL_RECIPIENTS'],
+  ENV.fetch('STAGING_MAIL_INTERCEPT_EMAIL_RECIPIENTS'),
   subject_prefix: '[STAGING]'
 )
