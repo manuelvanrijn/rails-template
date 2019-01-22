@@ -1,0 +1,38 @@
+# DOCKER IGNORE
+#
+# Specify all files that will not be included when building any docker image
+# Ignoring non-functional files can make the docker cache more stable
+
+docker/
+.env
+.dockerignore
+
+# Non-functional files
+**/*.md
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# git files
+**/.git
+.gitignore
+
+# Uploaded files
+/storage/*
+/spec/test_uploads/*
+
+# Ignore reports
+/brakeman-output.*
+/coverage
+/erd.pdf
+
+# Attachments
+/public/uploads/*
+/public/packs
+/public/packs-test
+yarn-debug.log*
+.yarn-integrity
+
+# situational files
+yarn-error.log
