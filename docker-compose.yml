@@ -1,0 +1,81 @@
+version: '3.5'
+
+services:
+  # Database container
+  db: &db
+    image: mysql:5.7
+    environment:
+      - MAX_CONNECTIONS=200
+      - MYSQL_ROOT_PASSWORD=root
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306"
+
+  # Base Rails Application, extended by other services
+  rails: &rails
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: >
+      sh -c "rm tmp/pids/server.pid 2>/dev/null;
+      bin/rails server -b 0.0.0.0"
+    volumes:
+      - .:/usr/src/app
+      - ./bundle:/bundle:cached
+    environment:
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_HOST: db
+      NODE_ENV: development
+      RAILS_ENV: development
+    ports:
+      - "3000:3000"
+
+  # docker-compose up --build web
+  web: &web
+    <<: *rails
+    environment:
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: webpack
+    depends_on:
+      - db
+      - webpack
+    tty: true
+    stdin_open: true
+
+  # docker-compose run web-test
+  web-test: &web-test
+    <<: *rails
+    command: bin/rspec spec
+    environment:
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      DATABASE_HOST: db
+      NODE_ENV: test
+      RAILS_ENV: test
+    depends_on:
+      - db
+
+  # docker-compose up web-guard
+  web-guard: &web-guard
+    <<: *web-test
+    command: bin/bundle exec guard
+
+  # Asset Compiler for Rails
+  webpack:
+    <<: *rails
+    command: bin/webpack-dev-server
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+    ports:
+      - "3035"
+
+volumes:
+  db-data:
