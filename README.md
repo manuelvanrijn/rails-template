@@ -42,6 +42,7 @@ Create a `~/.railsrc` file with these contents:
 ## What's included by default
 
 * Setup git master and develop branch structure
+* Docker
 * HAML instead of ERB
 * Foreman to bootup rails (and other dependent processes) for development
 * Airbrake (errbit) for error handling and capistrano deployment hooks
