@@ -28,7 +28,6 @@ services:
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
-      NODE_ENV: development
       RAILS_ENV: development
     ports:
       - "3000:3000"
@@ -41,7 +40,6 @@ services:
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
       DATABASE_PORT: 3306
-      NODE_ENV: development
       RAILS_ENV: development
       WEBPACKER_DEV_SERVER_HOST: webpack
     depends_on:
@@ -58,7 +56,6 @@ services:
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
-      NODE_ENV: test
       RAILS_ENV: test
     depends_on:
       - db
