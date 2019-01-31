@@ -39,7 +39,6 @@ services:
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
-      DATABASE_PORT: 3306
       RAILS_ENV: development
       WEBPACKER_DEV_SERVER_HOST: webpack
     depends_on:
