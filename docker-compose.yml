@@ -24,13 +24,15 @@ services:
     volumes:
       - .:/usr/src/app
       - ./bundle:/bundle:cached
-    environment:
+    environment: &rails-env
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
       RAILS_ENV: development
     ports:
       - "3000:3000"
+    depends_on:
+      - db
 
   # docker-compose up --build web
   web: &web
@@ -47,21 +49,20 @@ services:
     tty: true
     stdin_open: true
 
-  # docker-compose run web-test
-  web-test: &web-test
+  rails-test: &rails-test
     <<: *rails
-    command: bin/rspec spec
     environment:
-      DATABASE_USERNAME: root
-      DATABASE_PASSWORD: root
-      DATABASE_HOST: db
+      <<: *rails-env
       RAILS_ENV: test
-    depends_on:
-      - db
 
-  # docker-compose up web-guard
-  web-guard: &web-guard
-    <<: *web-test
+  #docker-compose run rspec
+  rspec: &rspec
+    <<: *rails-test
+    command: bin/rspec
+
+  # docker-compose up guard
+  guard: &guard
+    <<: *rails-test
     command: bin/bundle exec guard
 
   # Asset Compiler for Rails
