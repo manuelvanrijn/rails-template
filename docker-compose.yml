@@ -60,11 +60,6 @@ services:
     <<: *rails-test
     command: bin/rspec
 
-  # docker-compose up guard
-  guard: &guard
-    <<: *rails-test
-    command: bin/bundle exec guard
-
   # Asset Compiler for Rails
   webpack:
     <<: *rails
