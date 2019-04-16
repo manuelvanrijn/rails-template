@@ -7,24 +7,26 @@ services:
     environment:
       - MAX_CONNECTIONS=200
       - MYSQL_ROOT_PASSWORD=root
-    restart: always
     volumes:
       - db-data:/var/lib/mysql
     ports:
       - "3306"
 
+  redis:
+    image: redis:3.2.10-alpine
+
   # Base Rails Application, extended by other services
   rails: &rails
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ./
+      dockerfile: ./dev.Dockerfile
     command: >
       sh -c "rm tmp/pids/server.pid 2>/dev/null;
       bin/rails server -b 0.0.0.0"
     volumes:
       - .:/usr/src/app
       - ./bundle:/bundle:cached
-    environment: &rails-env
+    environment: &rails-environment
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
@@ -51,23 +53,35 @@ services:
 
   rails-test: &rails-test
     <<: *rails
+    volumes:
+      - .:/usr/src/app
+      - test_bundle:/bundle:cached
+      - modules:/usr/src/app/node_modules/
     environment:
-      <<: *rails-env
+      <<: *rails-environment
       RAILS_ENV: test
 
   #docker-compose run rspec
   rspec: &rspec
     <<: *rails-test
-    command: bin/rspec
+    entrypoint: ["./docker-entrypoint.sh", "rspec"]
+
+  #docker-compose up guard
+  guard: &guard
+    <<: *rails-test
+    entrypoint: ["./docker-entrypoint.sh", "bin/bundle", "exec", "guard", "--no-interactions"]
+    tty: true
 
   # Asset Compiler for Rails
   webpack:
     <<: *rails
-    command: bin/webpack-dev-server
+    command: bin/webpack-dev-server --inline true
     environment:
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
     ports:
-      - "3035"
+      - '4035:4035'
 
 volumes:
   db-data:
+  dev_bundle:
+  test_bundle:
