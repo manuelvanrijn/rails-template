@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MAX_CONNECTIONS=200
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - ./ci/db:/var/lib/mysql
+
+  rails:
+    build:
+      context: .
+      dockerfile: ./ci/ci.Dockerfile
+    environment:
+      RAILS_ENV: test
+      SKIP_COVERAGE: true
+      DATABASE_HOST: db
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+    env_file:
+     - example.env
+    depends_on:
+      - db
+    cached: true
+    default_cache_branch: "develop"

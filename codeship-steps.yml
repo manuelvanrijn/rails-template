@@ -1,0 +1,9 @@
+- name: setup database
+  service: rails
+  command: bin/rails db:create db:schema:load
+- name: test
+  service: rails
+  command: bundle exec rspec
+- name: audit
+  service: rails
+  command: bundle exec bundle-audit check --update
