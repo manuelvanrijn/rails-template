@@ -30,8 +30,7 @@ RUN echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list
     curl -sL https://deb.nodesource.com/setup_6.x | bash && \
     apt-get install -qq -y --no-install-recommends yarn nodejs
 
-ENV RAILS_ROOT=/usr/src/app \
-    GEM_HOME=/bundle \
+ENV GEM_HOME=/bundle \
     BUNDLE_PATH=/bundle \
     BUNDLE_BIN=/bundle/bin \
     PATH="${BUNDLE_BIN}:${PATH}"
@@ -39,19 +38,7 @@ ENV RAILS_ROOT=/usr/src/app \
 RUN gem update --system && \
     gem install bundler
 
-WORKDIR $RAILS_ROOT
+WORKDIR /usr/src/app
 
-#Install bundle dependencies
-COPY /Gemfile ./Gemfile
-COPY /Gemfile.lock ./Gemfile.lock
-RUN bundle install --jobs 10
-
-#Install yarn dependencies
-COPY package.json ./package.json
-COPY yarn.lock ./yarn.lock
-RUN yarn install
-
-#Copy other sources
-COPY . .
-
+COPY docker-entrypoint.sh ./
 ENTRYPOINT ["./docker-entrypoint.sh"]
