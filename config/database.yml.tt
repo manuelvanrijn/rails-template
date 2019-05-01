@@ -4,7 +4,9 @@ default: &default
   pool: 25
   username: <%%= ENV['DATABASE_USERNAME'] %>
   password: <%%= ENV['DATABASE_PASSWORD'] %>
-  socket: /tmp/mysql.sock
+  host: <%%= ENV['DATABASE_HOST'] %>
+  variables:
+    sql_mode: TRADITIONAL
 
 development:
   <<: *default
