@@ -18,12 +18,20 @@ def apply_template!
   run 'bundle install --quiet' unless ENV['DEBUG'].present?
 
   template 'example.env.tt', 'example.env'
-  template 'ruby-version.tt', '.ruby-version'
   template 'erdconfig.tt', '.erdconfig'
   copy_file 'rubocop.yml', '.rubocop.yml'
   copy_file '.capistrano/metrics'
   copy_file 'gitignore', '.gitignore', force: true
   copy_file 'Procfile'
+
+  copy_file '.dockerignore'
+  copy_file 'dev.Dockerfile'
+  copy_file 'docker-entrypoint.sh'
+  copy_file 'docker-compose.yml'
+  copy_file 'ci/ci.Dockerfile'
+  copy_file 'codeship-services.yml'
+  copy_file 'codeship-steps.yml'
+  copy_file 'wait-for-it.sh'
 
   apply 'app/template.rb'
   apply 'config/template.rb'
